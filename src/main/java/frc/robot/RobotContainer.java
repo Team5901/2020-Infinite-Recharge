@@ -9,9 +9,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -22,15 +27,27 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final DrivetrainSubsystem m_DrivetrainSubsystem = new DrivetrainSubsystem();
+  private final VisionSubsystem m_VisionSubsystem = new VisionSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
-
+  XboxController Controller1 = new XboxController(0);
+  XboxController Controller2 = new XboxController(1);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+
+    //Add default commands here
+    m_DrivetrainSubsystem.setDefaultCommand(
+        new RunCommand(() -> m_DrivetrainSubsystem
+          .arcadeDrive(Controller1.getY(GenericHID.Hand.kLeft),
+              Controller1.getX(GenericHID.Hand.kRight)), m_DrivetrainSubsystem));
+              
+
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -42,6 +59,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    new JoystickButton (Controller1, Button.kBumperRight.value)
+      .whenPressed(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kLowSpeedRatio))
+      .whenReleased(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kHighSpeedRatio));
   }
 
 
