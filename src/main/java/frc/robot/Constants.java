@@ -47,13 +47,22 @@ public final class Constants {
             (kWheelDiameterInches * Math.PI) / (double) kEncoderCPR;
 
         //Gyro
+    }
 
-
-
-
-
-
+    public static final class IntakeConstants {
+        public static final int kMotorPort = 4;
+        public static final double kIntakeSpeed = 0.5;
 
 
     }
+
+    public static final class ShooterConstants{
+        public static final int kMotorPort = 5;
+
+
+}
+
+
+
+
 }
