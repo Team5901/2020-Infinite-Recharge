@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
+import frc.robot.commands.MoveTowerBall;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.TowerSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -35,6 +37,7 @@ public class RobotContainer {
   private final VisionSubsystem m_VisionSubsystem = new VisionSubsystem();
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
+  private final TowerSubsystem m_TheRisenOne= new TowerSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -76,6 +79,10 @@ public class RobotContainer {
 
       new JoystickButton (Controller1, Button.kX.value)
       .whenHeld(new GearShift(m_DrivetrainSubsystem));
+
+    //Tower Commands
+    new JoystickButton (Controller1, Button.kY.value)
+    .whenHeld(new MoveTowerBall(m_TheRisenOne));
       
     
 
