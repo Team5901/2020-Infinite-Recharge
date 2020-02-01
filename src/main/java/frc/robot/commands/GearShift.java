@@ -25,22 +25,19 @@ public class GearShift extends CommandBase {
   }
 
   // Called when the command is initially scheduled.
+  //tried using execute instead of initialized
   @Override
   public void initialize() {
+    //when piston is in, shiftStatus = false
     if (m_DrivetrainSubsystem.shiftStatus()){
       m_DrivetrainSubsystem.shiftIn();
-
     }
     else{
       m_DrivetrainSubsystem.shiftOut();
-
-
     }
-    m_DrivetrainSubsystem.shiftIn();
-    
+   
   }
   
-
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {

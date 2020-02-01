@@ -115,13 +115,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
   }
-
+//shiftIn pulls in
   public void shiftIn() {
-    SolarNoise.set(true);
+    SolarNoise.set(false);
   
   }
+  //shiftOut pushes Out
   public void shiftOut(){
-    SolarNoise.set(false);
+    SolarNoise.set(true);
 
   }
   

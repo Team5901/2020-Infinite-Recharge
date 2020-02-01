@@ -75,7 +75,7 @@ public class RobotContainer {
       
 
       new JoystickButton (Controller1, Button.kX.value)
-      .whenPressed(new GearShift(m_DrivetrainSubsystem));
+      .whenHeld(new GearShift(m_DrivetrainSubsystem));
       
     
 
