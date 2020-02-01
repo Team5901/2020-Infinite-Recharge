@@ -30,7 +30,6 @@ public class IntakeSubsystem extends SubsystemBase {
       boss.set(power);
 
   }
-
   
   public void compressorOn(){
        joe.setClosedLoopControl(true);
