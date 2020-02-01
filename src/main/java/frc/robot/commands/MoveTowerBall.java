@@ -8,47 +8,39 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.TowerSubsystem;
 
-public class GearShift extends CommandBase {
-  final DrivetrainSubsystem m_DrivetrainSubsystem;
-/*
-
-*/
+public class MoveTowerBall extends CommandBase {
   /**
-   * Creates a new GearShift.
+   * Creates a new MoveTowerBall.
    */
-  public GearShift(DrivetrainSubsystem subsystem) {
+  final TowerSubsystem TheRisenOne;
+  public MoveTowerBall(TowerSubsystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_DrivetrainSubsystem = subsystem;
+    TheRisenOne = subsystem;
     addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (m_DrivetrainSubsystem.shiftStatus()){
-      m_DrivetrainSubsystem.shiftIn();
 
-    }
-    else{
-      m_DrivetrainSubsystem.shiftOut();
-
-
-    }
-    
-    
   }
-  
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    TheRisenOne.moveBall(-1);
+  
+
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    TheRisenOne.moveBall(0);
+
   }
 
   // Returns true when the command should end.
