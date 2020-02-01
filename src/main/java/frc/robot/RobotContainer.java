@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -71,8 +72,12 @@ public class RobotContainer {
     //Intake Commands
     new JoystickButton (Controller1, Button.kBumperLeft.value)
       .whenPressed(new IntakeIn(m_IntakeSubsystem));
+      
 
-
+      new JoystickButton (Controller1, Button.kX.value)
+      .whenPressed(new GearShift(m_DrivetrainSubsystem));
+      
+    
 
 
 

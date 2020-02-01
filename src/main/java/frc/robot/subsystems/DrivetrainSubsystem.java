@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -43,6 +44,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   // The Gyro
   private final ADXRS450_Gyro m_gyro = new ADXRS450_Gyro();
+
+  // Shifter Solenoid
+  private final Solenoid SolarNoise = new Solenoid(3);
+
 
   /**
    * Creates a new DriveSubsystem.
@@ -110,4 +115,18 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
   }
+
+  public void shiftIn() {
+    SolarNoise.set(true);
+  
+  }
+  public void shiftOut(){
+    SolarNoise.set(false);
+
+  }
+  
+  public boolean shiftStatus(){
+    return SolarNoise.get();
+  }
+
 }
