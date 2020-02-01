@@ -33,14 +33,13 @@ public class IntakeSubsystem extends SubsystemBase {
 
   
   public void compressorOn(){
-       //joe.setClosedLoopControl(true);
+       joe.setClosedLoopControl(true);
   }
 
   public void compressorOff(){
-      //joe.setClosedLoopControl(false);
+      joe.setClosedLoopControl(false);
 
   }
-
 
   public void solenoidOn(){
     phil.set(true);
