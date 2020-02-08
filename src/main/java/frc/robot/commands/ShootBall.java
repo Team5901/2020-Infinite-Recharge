@@ -8,40 +8,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.TowerSubsystem;
+import frc.robot.Constants.IntakeConstants;
+import frc.robot.Constants.ShooterConstants;
+import frc.robot.subsystems.ShooterSubsystem;
 
-public class MoveTowerBall extends CommandBase {
+public class ShootBall extends CommandBase {
   /**
-   * Creates a new MoveTowerBall.
+   * Creates a new BallShooter.
    */
-  final TowerSubsystem TheRisenOne;
-  public MoveTowerBall(TowerSubsystem subsystem) {
+  final ShooterSubsystem m_ShooterSubsystem;
+
+  public ShootBall(ShooterSubsystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    TheRisenOne = subsystem;
+    m_ShooterSubsystem = subsystem;
     addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    TheRisenOne.moveBall(1);
-    System.out.println("asodijfaoisjfiajdsifa");
-  
-
+    m_ShooterSubsystem.shooterSpeedUp(ShooterConstants.kShooterRPM);
   }
-
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    TheRisenOne.moveBall(0);
-
+    m_ShooterSubsystem.stopShooter();
   }
 
   // Returns true when the command should end.

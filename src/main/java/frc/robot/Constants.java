@@ -57,7 +57,17 @@ public final class Constants {
     }
 
     public static final class ShooterConstants{
+        public static final double kShooterRPM = 5000;
         public static final int kMotorPort = 5;
+        public static final int kTimeoutMs = 30;
+    	public static final int kSlotIdx = 0;
+        public static final int kPIDLoopIdx = 0;
+        
+        public static final double kF = 0;
+        public static final double kP = 0;
+        public static final double kI = 0;
+        public static final double kD = 0;
+
 
 
 }

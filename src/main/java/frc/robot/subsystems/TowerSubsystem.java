@@ -8,13 +8,15 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class TowerSubsystem extends SubsystemBase {
   /**
    * Creates a new TowerSubsystem.
    */
-  private final WPI_TalonSRX TowerControl = new  WPI_TalonSRX(6);
+  private final WPI_TalonSRX TowerControl = new WPI_TalonSRX(6);
 
   public TowerSubsystem() {
 

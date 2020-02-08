@@ -14,6 +14,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.MoveTowerBall;
+import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -72,17 +73,24 @@ public class RobotContainer {
       .whenPressed(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kLowSpeedRatio))
       .whenReleased(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kHighSpeedRatio));
 
+    new JoystickButton (Controller1, Button.kB.value)
+      .whenHeld(new ShootBall(m_ShooterSubsystem));
+      
     //Intake Commands
-    new JoystickButton (Controller1, Button.kBumperLeft.value)
-      .whenPressed(new IntakeIn(m_IntakeSubsystem));
+    new JoystickButton (Controller1, Button.kA.value)
+      .whenHeld(new IntakeIn(m_IntakeSubsystem));
       
 
-      new JoystickButton (Controller1, Button.kX.value)
-      .whenHeld(new GearShift(m_DrivetrainSubsystem));
+    new JoystickButton (Controller1, Button.kX.value)
+    .whenHeld(new GearShift(m_DrivetrainSubsystem));
 
     //Tower Commands
     new JoystickButton (Controller1, Button.kY.value)
     .whenHeld(new MoveTowerBall(m_TheRisenOne));
+
+    //Shooter Commands
+    new JoystickButton (Controller1, Button.kBumperLeft.value)
+    .whenHeld(new ShootBall(m_ShooterSubsystem));
       
     
 
