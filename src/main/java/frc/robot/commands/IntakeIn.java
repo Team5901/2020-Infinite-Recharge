@@ -39,7 +39,7 @@ public class IntakeIn extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_IntakeSubsystem.solenoidOff();
-    m_IntakeSubsystem.intakeMotorOn(0);
+    m_IntakeSubsystem.intakeMotorOff();
   }
 
   // Returns true when the command should end.

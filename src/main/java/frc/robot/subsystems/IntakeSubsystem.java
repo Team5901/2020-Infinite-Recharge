@@ -27,16 +27,20 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void intakeMotorOn(double power){
-      boss.set(power);
+    boss.set(power);
 
+  }
+
+  public void intakeMotorOff(){
+    boss.stopMotor();
   }
   
   public void compressorOn(){
-       joe.setClosedLoopControl(true);
+    joe.setClosedLoopControl(true);
   }
 
   public void compressorOff(){
-      joe.setClosedLoopControl(false);
+    joe.setClosedLoopControl(false);
 
   }
 
