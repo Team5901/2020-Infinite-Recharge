@@ -39,7 +39,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shooterSpeedUp(double RPM){
       //double targetVelocity_UnitsPer100ms = RPM * 4096/2 / 600;
       //mav.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
-      mav.set(0.9);
+      mav.set(1);
   }
 
   public void stopShooter(){

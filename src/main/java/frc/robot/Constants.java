@@ -29,10 +29,10 @@ public final class Constants {
 
 
         //Drivetrain Motors
-        public static final int kLeftMotor1Port = 0;
-        public static final int kLeftMotor2Port = 1;
-        public static final int kRightMotor1Port = 2;
-        public static final int kRightMotor2Port = 3;
+        public static final int kLeftMotor1Port = 1;
+        public static final int kLeftMotor2Port = 3;
+        public static final int kRightMotor1Port = 0;
+        public static final int kRightMotor2Port = 2;
     
         //Encoders
         public static final int[] kLeftEncoderPorts = new int[]{0, 1};
