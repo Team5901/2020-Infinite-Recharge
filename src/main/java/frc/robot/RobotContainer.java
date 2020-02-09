@@ -51,13 +51,10 @@ public class RobotContainer {
   public RobotContainer() {
 
     //Add default commands here
-    m_DrivetrainSubsystem.setDefaultCommand(
-        new RunCommand(() -> m_DrivetrainSubsystem
-          .arcadeDrive(Controller1.getY(GenericHID.Hand.kLeft),
-              Controller1.getX(GenericHID.Hand.kRight)), m_DrivetrainSubsystem));
+    m_DrivetrainSubsystem.setDefaultCommand(new RunCommand(() -> m_DrivetrainSubsystem.arcadeDrive(
+            Controller1.getY(GenericHID.Hand.kLeft),
+            Controller1.getX(GenericHID.Hand.kRight)), m_DrivetrainSubsystem));
               
-
-
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -73,17 +70,14 @@ public class RobotContainer {
       .whenPressed(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kLowSpeedRatio))
       .whenReleased(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kHighSpeedRatio));
 
-    new JoystickButton (Controller1, Button.kB.value)
-      .whenHeld(new ShootBall(m_ShooterSubsystem));
+    //Drivetrain Commands
+    new JoystickButton (Controller1, Button.kX.value)
+    .whenHeld(new GearShift(m_DrivetrainSubsystem));
       
     //Intake Commands
     new JoystickButton (Controller1, Button.kA.value)
       .whenHeld(new IntakeIn(m_IntakeSubsystem));
       
-
-    new JoystickButton (Controller1, Button.kX.value)
-    .whenHeld(new GearShift(m_DrivetrainSubsystem));
-
     //Tower Commands
     new JoystickButton (Controller1, Button.kY.value)
     .whenHeld(new MoveTowerBall(m_TheRisenOne));
