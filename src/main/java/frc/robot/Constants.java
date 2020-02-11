@@ -51,7 +51,7 @@ public final class Constants {
 
     public static final class IntakeConstants {
         public static final int kMotorPort = 4;
-        public static final double kIntakeSpeed = 0.5;
+        public static final double kIntakeSpeed = 0.75;
 
 
     }

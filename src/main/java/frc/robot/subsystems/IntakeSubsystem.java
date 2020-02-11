@@ -6,6 +6,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -18,11 +19,12 @@ public class IntakeSubsystem extends SubsystemBase {
   /**
    * Creates a new IntakeSubsystem.
    */
-  private final WPI_VictorSPX boss = new WPI_VictorSPX(IntakeConstants.kMotorPort);
+  private final WPI_TalonSRX boss = new WPI_TalonSRX(5);
   private final Compressor joe = new Compressor(0);
   private final Solenoid phil = new Solenoid(7);
   
   public IntakeSubsystem() {
+    boss.setInverted(true);
 
   }
 

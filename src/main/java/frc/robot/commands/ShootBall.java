@@ -32,7 +32,7 @@ public class ShootBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_ShooterSubsystem.shooterSpeedUp(ShooterConstants.kShooterRPM);
+    m_ShooterSubsystem.shooterSpeedUp(5000);
   }
 
   // Called once the command ends or is interrupted.

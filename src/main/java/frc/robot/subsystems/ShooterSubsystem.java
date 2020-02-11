@@ -23,7 +23,7 @@ public class ShooterSubsystem extends SubsystemBase {
    public ShooterSubsystem() {
 
     /* Config the peak and nominal outputs */
-    mav.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, ShooterConstants.kTimeoutMs);
+    mav.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
     /* Config the peak and nominal outputs */
     mav.configNominalOutputForward(0, ShooterConstants.kTimeoutMs);
@@ -35,16 +35,19 @@ public class ShooterSubsystem extends SubsystemBase {
     mav.setInverted(true);
 
     //Set PID values
-    mav.config_kF(ShooterConstants.kPIDLoopIdx, ShooterConstants.kF, ShooterConstants.kTimeoutMs);
-    mav.config_kP(ShooterConstants.kPIDLoopIdx, ShooterConstants.kP, ShooterConstants.kTimeoutMs);
-    mav.config_kI(ShooterConstants.kPIDLoopIdx, ShooterConstants.kI, ShooterConstants.kTimeoutMs);
-    mav.config_kD(ShooterConstants.kPIDLoopIdx, ShooterConstants.kD, ShooterConstants.kTimeoutMs);
-    
+    mav.config_kF(ShooterConstants.kPIDLoopIdx, 0.09, 0);
+    mav.config_kP(ShooterConstants.kPIDLoopIdx, ShooterConstants.kP, 0);
+    mav.config_kI(ShooterConstants.kPIDLoopIdx, ShooterConstants.kI, 0);
+    mav.config_kD(ShooterConstants.kPIDLoopIdx, ShooterConstants.kD, 0);
+    mav.configClosedloopRamp(1);
+    mav.setSensorPhase(true);
   }
 
   public void shooterSpeedUp(double RPM){
-      double targetVelocity_UnitsPer100ms = RPM * 2048 / 600;
+      double targetVelocity_UnitsPer100ms = 2375 * 2048 / 600;
       mav.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
+      System.out.println(mav.getSelectedSensorVelocity()/2048*600);
+      //mav.set(0.9);
   }
 
   public void stopShooter(){
