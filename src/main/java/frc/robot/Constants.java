@@ -33,6 +33,7 @@ public final class Constants {
         public static final int kLeftMotor2Port = 1;
         public static final int kRightMotor1Port = 2;
         public static final int kRightMotor2Port = 3;
+        
     
         //Encoders
         public static final int[] kLeftEncoderPorts = new int[]{0, 1};
@@ -62,7 +63,10 @@ public final class Constants {
 
 }
 
-
+    public static final class ClimberConstants{
+        public static final int kLeftClimberMotor = 7;
+        public static final int kRightClimberMotor = 8;
+    }
 
 
 }
