@@ -29,11 +29,10 @@ public final class Constants {
 
 
         //Drivetrain Motors
-        public static final int kLeftMotor1Port = 0;
-        public static final int kLeftMotor2Port = 1;
-        public static final int kRightMotor1Port = 2;
-        public static final int kRightMotor2Port = 3;
-        
+        public static final int kLeftMotor1Port = 1;
+        public static final int kLeftMotor2Port = 3;
+        public static final int kRightMotor1Port = 0;
+        public static final int kRightMotor2Port = 2;
     
         //Encoders
         public static final int[] kLeftEncoderPorts = new int[]{0, 1};
@@ -52,13 +51,23 @@ public final class Constants {
 
     public static final class IntakeConstants {
         public static final int kMotorPort = 4;
-        public static final double kIntakeSpeed = 0.5;
+        public static final double kIntakeSpeed = 0.75;
 
 
     }
 
     public static final class ShooterConstants{
+        public static final double kShooterRPM = 5000;
         public static final int kMotorPort = 5;
+        public static final int kTimeoutMs = 30;
+    	public static final int kSlotIdx = 0;
+        public static final int kPIDLoopIdx = 0;
+        
+        public static final double kF = 0;
+        public static final double kP = 0;
+        public static final double kI = 0;
+        public static final double kD = 0;
+
 
 
 }

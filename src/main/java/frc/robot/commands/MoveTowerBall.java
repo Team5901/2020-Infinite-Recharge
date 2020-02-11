@@ -30,7 +30,8 @@ public class MoveTowerBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    TheRisenOne.moveBall(-1);
+    TheRisenOne.moveBall(1);
+    System.out.println("asodijfaoisjfiajdsifa");
   
 
   }

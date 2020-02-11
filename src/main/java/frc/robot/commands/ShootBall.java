@@ -9,37 +9,36 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.IntakeConstants;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.Constants.ShooterConstants;
+import frc.robot.subsystems.ShooterSubsystem;
 
-public class IntakeIn extends CommandBase {
-  final IntakeSubsystem m_IntakeSubsystem;
+public class ShootBall extends CommandBase {
   /**
-   * Creates a new IntakeIn.
+   * Creates a new BallShooter.
    */
-  public IntakeIn(IntakeSubsystem subsystem) {
+  final ShooterSubsystem m_ShooterSubsystem;
+
+  public ShootBall(ShooterSubsystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_IntakeSubsystem = subsystem;
+    m_ShooterSubsystem = subsystem;
     addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_IntakeSubsystem.solenoidOn();
-    
   }
-    
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_IntakeSubsystem.intakeMotorOn(IntakeConstants.kIntakeSpeed);
+    m_ShooterSubsystem.shooterSpeedUp(5000);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_IntakeSubsystem.solenoidOff();
-    m_IntakeSubsystem.intakeMotorOff();
+    m_ShooterSubsystem.stopShooter();
   }
 
   // Returns true when the command should end.

@@ -14,6 +14,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.MoveTowerBall;
+import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -52,13 +53,10 @@ public class RobotContainer {
   public RobotContainer() {
 
     //Add default commands here
-    m_DrivetrainSubsystem.setDefaultCommand(
-        new RunCommand(() -> m_DrivetrainSubsystem
-          .arcadeDrive(Controller1.getY(GenericHID.Hand.kLeft),
-              Controller1.getX(GenericHID.Hand.kRight)), m_DrivetrainSubsystem));
+    m_DrivetrainSubsystem.setDefaultCommand(new RunCommand(() -> m_DrivetrainSubsystem.arcadeDrive(
+            Controller1.getY(GenericHID.Hand.kLeft),
+            -Controller1.getX(GenericHID.Hand.kRight)), m_DrivetrainSubsystem));
               
-
-
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -74,21 +72,22 @@ public class RobotContainer {
       .whenPressed(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kLowSpeedRatio))
       .whenReleased(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kHighSpeedRatio));
 
-    //Intake Commands
-    new JoystickButton (Controller1, Button.kBumperLeft.value)
-      .whenPressed(new IntakeIn(m_IntakeSubsystem));
+    //Drivetrain Commands
+    new JoystickButton (Controller1, Button.kX.value)
+    .whenHeld(new GearShift(m_DrivetrainSubsystem));
       
-
-      new JoystickButton (Controller1, Button.kX.value)
-      .whenHeld(new GearShift(m_DrivetrainSubsystem));
-
+    //Intake Commands (go out )
+    new JoystickButton (Controller1, Button.kBumperLeft.value)
+      .whenHeld(new IntakeIn(m_IntakeSubsystem));
+      
     //Tower Commands
     new JoystickButton (Controller1, Button.kY.value)
     .whenHeld(new MoveTowerBall(m_TheRisenOne));
 
-    //Climb Commands
-    
-    
+    //Shooter Commands
+    new JoystickButton (Controller1, Button.kA.value)
+    .whenHeld(new ShootBall(m_ShooterSubsystem));
+      
     
 
 
