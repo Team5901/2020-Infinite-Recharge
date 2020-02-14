@@ -20,7 +20,6 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.TowerSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -39,7 +38,6 @@ public class RobotContainer {
   private final VisionSubsystem m_VisionSubsystem = new VisionSubsystem();
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
-  private final TowerSubsystem m_TheRisenOne= new TowerSubsystem();
   private final ClimberSubsystem m_TheClimb= new ClimberSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -82,7 +80,7 @@ public class RobotContainer {
       
     //Tower Commands
     new JoystickButton (Controller1, Button.kY.value)
-    .whenHeld(new MoveTowerBall(m_TheRisenOne));
+    .whenHeld(new MoveTowerBall(m_ShooterSubsystem));
 
     //Shooter Commands
     new JoystickButton (Controller1, Button.kA.value)

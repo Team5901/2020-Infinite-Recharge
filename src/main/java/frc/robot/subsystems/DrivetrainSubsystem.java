@@ -68,6 +68,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_drive.arcadeDrive(fwd, rot);
   }
 
+  public void turnControl(double angle){
+    if(getAngle() <= angle){
+      arcadeDrive(0, Math.signum(angle)*0.5);
+      
+    }
+    else {
+      arcadeDrive(0, 0);
+    }
+  }
+
   /**
    * Resets the drive encoders to currently read a position of 0.
    */

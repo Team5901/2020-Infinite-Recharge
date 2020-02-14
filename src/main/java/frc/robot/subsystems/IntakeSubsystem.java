@@ -20,11 +20,22 @@ public class IntakeSubsystem extends SubsystemBase {
    * Creates a new IntakeSubsystem.
    */
   private final WPI_TalonSRX boss = new WPI_TalonSRX(5);
+  private final WPI_TalonSRX fronzack = new WPI_TalonSRX(6);
   private final Compressor joe = new Compressor(0);
   private final Solenoid phil = new Solenoid(7);
   
   public IntakeSubsystem() {
     boss.setInverted(true);
+
+  }
+ 
+  public void conveyorMotorOn(double power){
+    fronzack.set(power);
+
+  }
+
+  public void conveyorMotorOff(){
+   fronzack.set(0);
 
   }
 

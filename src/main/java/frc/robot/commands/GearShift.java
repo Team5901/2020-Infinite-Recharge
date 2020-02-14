@@ -29,6 +29,7 @@ public class GearShift extends CommandBase {
   @Override
   public void initialize() {
     //when piston is in, shiftStatus = false
+    System.out.println("Gearshift");
     if (m_DrivetrainSubsystem.shiftStatus()){
       m_DrivetrainSubsystem.shiftIn();
     }
