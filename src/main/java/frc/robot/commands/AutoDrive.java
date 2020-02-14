@@ -8,32 +8,38 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class RaiseElevator extends CommandBase {
-  final ClimberSubsystem m_TheClimb;
+public class AutoDrive extends CommandBase {
+  final DrivetrainSubsystem m_DrivetrainSubsystem;
+
   /**
-   * Creates a new RaiseElevator.
+   * 
+   * Creates a new autodrive.
    */
-  public RaiseElevator(ClimberSubsystem subsystem) {
+  public AutoDrive(DrivetrainSubsystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_TheClimb = subsystem;
+    m_DrivetrainSubsystem = subsystem;
     addRequirements(subsystem);
-    m_TheClimb.setTheclimb(.5);
   }
-  
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-  }
 
+
+  }
+  
+ 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
+  //18.84in(wheel circumference) = 0.48m. 
   public void execute() {
-    
+    m_DrivetrainSubsystem.AutoDro/
+    \ive(.96);
   }
-
+  
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {

@@ -67,6 +67,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void arcadeDrive(double fwd, double rot) {
     m_drive.arcadeDrive(fwd, rot);
   }
+  
 
   /**
    * Resets the drive encoders to currently read a position of 0.
@@ -115,6 +116,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
   }
+  public void AutoDroive(double distance) {
+    if(getAverageEncoderDistance()<= distance){
+      arcadeDrive(.5, 0);
+    }
+    else{
+      arcadeDrive(0, 0);
+  }
+  }
 //shiftIn pulls in
   public void shiftIn() {
     SolarNoise.set(false);
@@ -129,5 +138,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public boolean shiftStatus(){
     return SolarNoise.get();
   }
+
 
 }

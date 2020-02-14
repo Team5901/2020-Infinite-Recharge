@@ -14,6 +14,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.MoveTowerBall;
+import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
@@ -88,6 +89,9 @@ public class RobotContainer {
     new JoystickButton (Controller1, Button.kA.value)
     .whenHeld(new ShootBall(m_ShooterSubsystem));
       
+    //Climber Commands
+    new JoystickButton(Controller1, Button.kB.value)
+    .whenHeld(new RaiseElevator(m_TheClimb));
     
 
 

@@ -16,18 +16,25 @@ public class ClimberSubsystem extends SubsystemBase {
   /**
    * Creates a new ClimberSubsystem.
    */
-  private final WPI_TalonSRX sir = new WPI_TalonSRX(4);
+
+  private final WPI_TalonSRX LeftClimber = new WPI_TalonSRX(ClimberConstants.kLeftClimberMotor);
+  private final WPI_TalonSRX RightClimber= new WPI_TalonSRX(ClimberConstants.kRightClimberMotor);
+
+
+  
   public ClimberSubsystem() {
 
   }
 
-
-
   public void setTheclimb(double value) {
-    sir.set(1.0);
+    LeftClimber.set(value);
+    RightClimber.set(value);
+    
+ 
   }
   public void stopTheclimb() {
-    sir.stopMotor();
+    LeftClimber.stopMotor();
+    RightClimber.stopMotor();
   }
 
   @Override
