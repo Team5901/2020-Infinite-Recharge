@@ -10,8 +10,12 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ShooterConstants;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 
 
 public class ShooterSubsystem extends SubsystemBase {
@@ -19,7 +23,8 @@ public class ShooterSubsystem extends SubsystemBase {
    * Creates a new ShooterSubsystem.
    */
   private final WPI_TalonFX mav = new WPI_TalonFX(10);
- 
+  private final WPI_TalonSRX TowerControl = new WPI_TalonSRX(6);
+
    public ShooterSubsystem() {
 
     /* Config the peak and nominal outputs */
@@ -54,9 +59,12 @@ public class ShooterSubsystem extends SubsystemBase {
     mav.stopMotor();
   }
 
-
+  public void moveBall(double power){
+    TowerControl.set(power);
+  }
   @Override
   public void periodic() {
     //This method will be called once per scheduler run
   }
+
 }

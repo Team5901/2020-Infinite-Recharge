@@ -26,13 +26,25 @@ public class IntakeIn extends CommandBase {
   @Override
   public void initialize() {
     m_IntakeSubsystem.solenoidOn();
+    System.out.println("Intake In");
     
   }
     
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //start spinning wheels
     m_IntakeSubsystem.intakeMotorOn(IntakeConstants.kIntakeSpeed);
+
+    //if ball detected
+    /* if (beam is broken){
+      m_IntakeSubsystem.conveyorMotorOn(1);
+
+    }
+    else {
+      m_IntakeSubsystem.conveyorMotorOff();
+    }*/
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -40,6 +52,7 @@ public class IntakeIn extends CommandBase {
   public void end(boolean interrupted) {
     m_IntakeSubsystem.solenoidOff();
     m_IntakeSubsystem.intakeMotorOff();
+    m_IntakeSubsystem.conveyorMotorOff();
   }
 
   // Returns true when the command should end.

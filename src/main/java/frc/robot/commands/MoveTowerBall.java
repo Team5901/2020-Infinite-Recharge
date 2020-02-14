@@ -8,16 +8,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.TowerSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 public class MoveTowerBall extends CommandBase {
   /**
    * Creates a new MoveTowerBall.
    */
-  final TowerSubsystem TheRisenOne;
-  public MoveTowerBall(TowerSubsystem subsystem) {
+  final ShooterSubsystem m_ShooterSubsystem ;
+  public MoveTowerBall(ShooterSubsystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
-    TheRisenOne = subsystem;
+    m_ShooterSubsystem = subsystem;
     addRequirements(subsystem);
   }
 
@@ -30,7 +30,7 @@ public class MoveTowerBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    TheRisenOne.moveBall(1);
+    m_ShooterSubsystem.moveBall(1);
     System.out.println("asodijfaoisjfiajdsifa");
   
 
@@ -40,7 +40,7 @@ public class MoveTowerBall extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    TheRisenOne.moveBall(0);
+    m_ShooterSubsystem.moveBall(0);
 
   }
 
