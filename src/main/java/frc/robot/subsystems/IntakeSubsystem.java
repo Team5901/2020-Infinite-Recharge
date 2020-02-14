@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -23,7 +24,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private final WPI_TalonSRX fronzack = new WPI_TalonSRX(6);
   private final Compressor joe = new Compressor(0);
   private final Solenoid phil = new Solenoid(7);
-  
+  private final AnalogInput bill = new AnalogInput(0);
   public IntakeSubsystem() {
     boss.setInverted(true);
 
@@ -67,7 +68,16 @@ public class IntakeSubsystem extends SubsystemBase {
 
   }
 
-
+  public boolean ballExist(){
+    bill.setAverageBits(4);
+    if(bill.getVoltage()>2.7){
+      return true;
+    }
+    else {
+      return false;
+    }
+    
+  }
   
 
 

@@ -19,7 +19,6 @@ public class RaiseElevator extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     m_TheClimb = subsystem;
     addRequirements(subsystem);
-    m_TheClimb.setTheclimb(.5);
   }
   
 
@@ -31,12 +30,13 @@ public class RaiseElevator extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    m_TheClimb.setTheclimb(.5);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_TheClimb.stopTheclimb();
   }
 
   // Returns true when the command should end.

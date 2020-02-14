@@ -37,13 +37,14 @@ public class IntakeIn extends CommandBase {
     m_IntakeSubsystem.intakeMotorOn(IntakeConstants.kIntakeSpeed);
 
     //if ball detected
-    /* if (beam is broken){
+     if (m_IntakeSubsystem.ballExist()){
+      System.out.println("Ball Exists");
       m_IntakeSubsystem.conveyorMotorOn(1);
 
     }
     else {
       m_IntakeSubsystem.conveyorMotorOff();
-    }*/
+    }
     
   }
 
