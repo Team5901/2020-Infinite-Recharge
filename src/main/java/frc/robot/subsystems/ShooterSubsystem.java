@@ -23,7 +23,6 @@ public class ShooterSubsystem extends SubsystemBase {
    * Creates a new ShooterSubsystem.
    */
   private final WPI_TalonFX mav = new WPI_TalonFX(10);
-  private final WPI_TalonSRX TowerControl = new WPI_TalonSRX(6);
 
    public ShooterSubsystem() {
 
@@ -59,9 +58,6 @@ public class ShooterSubsystem extends SubsystemBase {
     mav.stopMotor();
   }
 
-  public void moveBall(double power){
-    TowerControl.set(power);
-  }
   @Override
   public void periodic() {
     //This method will be called once per scheduler run

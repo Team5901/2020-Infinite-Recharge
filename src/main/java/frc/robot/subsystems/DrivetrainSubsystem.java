@@ -15,38 +15,40 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.RobotPorts;
 
 public class DrivetrainSubsystem extends SubsystemBase {
   
   // The motors on the left side of the drive.
   private final SpeedControllerGroup m_leftMotors =
-      new SpeedControllerGroup(new WPI_TalonSRX(DriveConstants.kLeftMotor1Port),
-                               new WPI_TalonSRX(DriveConstants.kLeftMotor2Port));
+      new SpeedControllerGroup(new WPI_TalonSRX(RobotPorts.kLeftFrontMotor),
+                               new WPI_TalonSRX(RobotPorts.kLeftRearMotor));
 
   // The motors on the right side of the drive.
   private final SpeedControllerGroup m_rightMotors =
-      new SpeedControllerGroup(new WPI_TalonSRX(DriveConstants.kRightMotor1Port),
-                               new WPI_TalonSRX(DriveConstants.kRightMotor2Port));
+      new SpeedControllerGroup(new WPI_TalonSRX(RobotPorts.kRightFrontMotor),
+                               new WPI_TalonSRX(RobotPorts.kRightRearMotor));
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
 
   // The left-side drive encoder
   private final Encoder m_leftEncoder =
-      new Encoder(DriveConstants.kLeftEncoderPorts[0], DriveConstants.kLeftEncoderPorts[1],
+      new Encoder(RobotPorts.kLeftEncoderPorts[0], RobotPorts.kLeftEncoderPorts[1],
                   DriveConstants.kLeftEncoderReversed);
 
   // The right-side drive encoder
   private final Encoder m_rightEncoder =
-      new Encoder(DriveConstants.kRightEncoderPorts[0], DriveConstants.kRightEncoderPorts[1],
+      new Encoder(RobotPorts.kRightEncoderPorts[0], RobotPorts.kRightEncoderPorts[1],
                   DriveConstants.kRightEncoderReversed);
 
   // The Gyro
   private final ADXRS450_Gyro m_gyro = new ADXRS450_Gyro();
 
   // Shifter Solenoid
-  private final Solenoid SolarNoise = new Solenoid(3);
+  private final Solenoid SolarNoise = new Solenoid(RobotPorts.kShifterSolenoid);
 
 
   /**
@@ -65,14 +67,31 @@ public class DrivetrainSubsystem extends SubsystemBase {
    * @param rot the commanded rotation
    */
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
+    m_drive.arcadeDrive(Math.pow(fwd,3),Math.pow(rot,3));
   }
   
+  public void AutoDroive(double distance) {
+    //find absolute error
+    double error = Math.abs(distance - getAverageEncoderDistance());
 
-  public void turnControl(double angle){
-    if(getAngle() <= angle){
-      arcadeDrive(0, Math.signum(angle)*0.5);
-      
+    //if distance is positive and error is greater than 
+    if(getAverageEncoderDistance() > 0 && error > Constants.DriveConstants.kAutoDistanceError){      
+      arcadeDrive(Constants.DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
+    }
+    else if (getAverageEncoderDistance() < 0 && error > Constants.DriveConstants.kAutoDistanceError) {
+      arcadeDrive(Constants.DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
+    }
+    else {
+      arcadeDrive(0,0);
+    }
+  }
+  
+  public void turnControl(double angleTarget){
+    double angle = m_gyro.getAngle();
+    double target = angle + angleTarget;
+
+    if(Math.abs(target) < Constants.DriveConstants.kAutoAngleError){
+      arcadeDrive(0, -Math.signum(target)*(Math.abs(target)*Constants.DriveConstants.kAutoTurnRatio) + Constants.DriveConstants.kAutoMinRotRatio);
     }
     else {
       arcadeDrive(0, 0);
@@ -126,14 +145,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
   }
-  public void AutoDroive(double distance) {
-    if(getAverageEncoderDistance()<= distance){
-      arcadeDrive(.5, 0);
-    }
-    else{
-      arcadeDrive(0, 0);
-  }
-  }
+
 //shiftIn pulls in
   public void shiftIn() {
     SolarNoise.set(false);

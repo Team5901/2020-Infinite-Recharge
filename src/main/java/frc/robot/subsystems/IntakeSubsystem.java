@@ -14,16 +14,17 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
+import frc.robot.Constants.RobotPorts;
 
 
 public class IntakeSubsystem extends SubsystemBase {
   /**
    * Creates a new IntakeSubsystem.
    */
-  private final WPI_TalonSRX boss = new WPI_TalonSRX(5);
-  private final WPI_TalonSRX fronzack = new WPI_TalonSRX(6);
+  private final WPI_TalonSRX boss = new WPI_TalonSRX(RobotPorts.kIntakeMotor);
+  private final WPI_TalonSRX fronzack = new WPI_TalonSRX(RobotPorts.kConveyorMotor);
   private final Compressor joe = new Compressor(0);
-  private final Solenoid phil = new Solenoid(7);
+  private final Solenoid phil = new Solenoid(RobotPorts.kIntakeSolenoid);
   private final AnalogInput bill = new AnalogInput(0);
   public IntakeSubsystem() {
     boss.setInverted(true);

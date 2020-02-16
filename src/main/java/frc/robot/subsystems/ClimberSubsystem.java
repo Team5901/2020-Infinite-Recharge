@@ -10,17 +10,15 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.ClimberConstants;
+import frc.robot.Constants;
 
 public class ClimberSubsystem extends SubsystemBase {
   /**
    * Creates a new ClimberSubsystem.
    */
 
-  private final WPI_TalonSRX LeftClimber = new WPI_TalonSRX(ClimberConstants.kLeftClimberMotor);
-  private final WPI_TalonSRX RightClimber= new WPI_TalonSRX(ClimberConstants.kRightClimberMotor);
-
-
+  private final WPI_TalonSRX LeftClimber = new WPI_TalonSRX(Constants.RobotPorts.kLeftClimberMotor);
+  private final WPI_TalonSRX RightClimber= new WPI_TalonSRX(Constants.RobotPorts.kRightClimberMotor);
   
   public ClimberSubsystem() {
 

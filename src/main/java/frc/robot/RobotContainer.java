@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
-import frc.robot.commands.MoveTowerBall;
 import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -80,8 +79,6 @@ public class RobotContainer {
       .whenHeld(new IntakeIn(m_IntakeSubsystem));
       
     //Tower Commands
-    new JoystickButton (Controller1, Button.kY.value)
-    .whenHeld(new MoveTowerBall(m_ShooterSubsystem));
 
     //Shooter Commands
     new JoystickButton (Controller1, Button.kA.value)

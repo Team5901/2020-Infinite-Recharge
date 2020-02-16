@@ -17,26 +17,52 @@ package frc.robot;
  */
 public final class Constants {
 
+    public static final class RobotPorts{
+
+        //CAN IDs
+        public static final int kLeftFrontMotor = 1;
+        public static final int kLeftRearMotor = 3;
+        public static final int kRightFrontMotor = 0;
+        public static final int kRightRearMotor = 2;
+        public static final int kIntakeMotor = 4;
+        public static final int kConveyorMotor = 5;
+        public static final int kLeftClimberMotor = 6;
+        public static final int kRightClimberMotor = 7;
+        public static final int kShooterMotor = 10;
+
+        //Pneumatic Control Module ports
+        public static final int kShifterSolenoid = 3;
+        public static final int kIntakeSolenoid = 7;
+
+
+
+        public static final int[] kLeftEncoderPorts = new int[]{0, 1};
+        public static final int[] kRightEncoderPorts = new int[]{2, 3};
+
+
+    }
     public static final class DriveConstants {
         //Drivetrain Parameters
-        public static final double kTurnRatio = 0.03;
         public static final double kLowSpeedRatio = 0.7;
         public static final double kHighSpeedRatio = 1.0;
+        public static final double kLimitTurnRatio = 0.5;
 
+        public static final double kAutoSpeedRatio = 0.5;           //Adjusts how quickly we drive straight in auto
+        public static final double kAutoDistanceError = 20;         //Threshold acceptable distance error for auto
+        public static final double kAutoMinFwdRatio = 0;            //Minimum power required to move robot
+
+        public static final double kAutoTurnRatio = 0.03;           //Adjusts how quickly we turn in auto         
+        public static final double kAutoAngleError = 1;             //Threshold acceptable angle error for auto
+        public static final double kAutoMinRotRatio = .07;          //Minimum power required to turn robot
+        
         //Vision Paramters
         public static final double kVisionSpeedRatio = 0.2;
         public static final double kVisionTurnRatio = 0.7;
 
-
         //Drivetrain Motors
-        public static final int kLeftMotor1Port = 1;
-        public static final int kLeftMotor2Port = 3;
-        public static final int kRightMotor1Port = 0;
-        public static final int kRightMotor2Port = 2;
+
     
         //Encoders
-        public static final int[] kLeftEncoderPorts = new int[]{0, 1};
-        public static final int[] kRightEncoderPorts = new int[]{2, 3};
         public static final boolean kLeftEncoderReversed = false;
         public static final boolean kRightEncoderReversed = true;
     
@@ -50,7 +76,6 @@ public final class Constants {
     }
 
     public static final class IntakeConstants {
-        public static final int kMotorPort = 4;
         public static final double kIntakeSpeed = 0.75;
 
 
@@ -67,14 +92,10 @@ public final class Constants {
         public static final double kP = 0;
         public static final double kI = 0;
         public static final double kD = 0;
-
-
-
 }
 
     public static final class ClimberConstants{
-        public static final int kLeftClimberMotor = 7;
-        public static final int kRightClimberMotor = 8;
+
     }
 
 
