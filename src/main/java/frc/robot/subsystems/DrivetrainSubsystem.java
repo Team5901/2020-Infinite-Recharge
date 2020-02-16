@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -21,28 +23,21 @@ import frc.robot.Constants.RobotPorts;
 
 public class DrivetrainSubsystem extends SubsystemBase {
   
+  private final WPI_TalonFX leftFrontDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
+  private final WPI_TalonFX leftRearDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
+  private final WPI_TalonFX rightFrontDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
+  private final WPI_TalonFX rightRearDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
+
   // The motors on the left side of the drive.
   private final SpeedControllerGroup m_leftMotors =
-      new SpeedControllerGroup(new WPI_TalonSRX(RobotPorts.kLeftFrontMotor),
-                               new WPI_TalonSRX(RobotPorts.kLeftRearMotor));
+      new SpeedControllerGroup(leftFrontDriveMotor, leftRearDriveMotor);
 
   // The motors on the right side of the drive.
   private final SpeedControllerGroup m_rightMotors =
-      new SpeedControllerGroup(new WPI_TalonSRX(RobotPorts.kRightFrontMotor),
-                               new WPI_TalonSRX(RobotPorts.kRightRearMotor));
+      new SpeedControllerGroup(rightFrontDriveMotor,rightRearDriveMotor);
 
   // The robot's drive
   private final DifferentialDrive m_drive = new DifferentialDrive(m_leftMotors, m_rightMotors);
-
-  // The left-side drive encoder
-  private final Encoder m_leftEncoder =
-      new Encoder(RobotPorts.kLeftEncoderPorts[0], RobotPorts.kLeftEncoderPorts[1],
-                  DriveConstants.kLeftEncoderReversed);
-
-  // The right-side drive encoder
-  private final Encoder m_rightEncoder =
-      new Encoder(RobotPorts.kRightEncoderPorts[0], RobotPorts.kRightEncoderPorts[1],
-                  DriveConstants.kRightEncoderReversed);
 
   // The Gyro
   private final ADXRS450_Gyro m_gyro = new ADXRS450_Gyro();
@@ -56,8 +51,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
    */
   public DrivetrainSubsystem() {
     // Sets the distance per pulse for the encoders
-    m_leftEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
-    m_rightEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
+    leftFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
   }
 
   /**
@@ -70,7 +64,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     m_drive.arcadeDrive(Math.pow(fwd,3),Math.pow(rot,3));
   }
   
-  public void AutoDroive(double distance) {
+  /*public void AutoDroive(double distance) {
     //find absolute error
     double error = Math.abs(distance - getAverageEncoderDistance());
 
@@ -84,7 +78,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     else {
       arcadeDrive(0,0);
     }
-  }
+  }*/
   
   public void turnControl(double angleTarget){
     double angle = m_gyro.getAngle();
@@ -102,8 +96,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
    * Resets the drive encoders to currently read a position of 0.
    */
   public void resetEncoders() {
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
+    //m_leftEncoder.reset();
+    //m_rightEncoder.reset();
   }
 
   /**
@@ -111,17 +105,17 @@ public class DrivetrainSubsystem extends SubsystemBase {
    *
    * @return the average of the two encoder readings
    */
-  public double getAverageEncoderDistance() {
+  /*public double getAverageEncoderDistance() {
     return (m_leftEncoder.getDistance() + m_rightEncoder.getDistance()) / 2.0;
-  }
+  }*/
 
   /**
    * Gets the left drive encoder.
    *
    * @return the left drive encoder
    */
-  public Encoder getLeftEncoder() {
-    return m_leftEncoder;
+  public double getLeftEncoder() {
+    return leftFrontDriveMotor.getSelectedSensorPosition();
   }
 
   /**
@@ -129,8 +123,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
    *
    * @return the right drive encoder
    */
-  public Encoder getRightEncoder() {
-    return m_rightEncoder;
+  public double getRightEncoder() {
+    return rightFrontDriveMotor.getSelectedSensorPosition();
   }
 
   public double getAngle() {

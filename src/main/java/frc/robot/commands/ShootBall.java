@@ -8,8 +8,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.ShooterConstants;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class ShootBall extends CommandBase {
@@ -17,11 +19,13 @@ public class ShootBall extends CommandBase {
    * Creates a new BallShooter.
    */
   final ShooterSubsystem m_ShooterSubsystem;
+  final IntakeSubsystem m_IntakeSubsystem;
 
-  public ShootBall(ShooterSubsystem subsystem) {
+  public ShootBall(ShooterSubsystem subsystem1, IntakeSubsystem subsystem2) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_ShooterSubsystem = subsystem;
-    addRequirements(subsystem);
+    m_ShooterSubsystem = subsystem1;
+    m_IntakeSubsystem = subsystem2;
+    addRequirements(subsystem1,subsystem2);
   }
 
   // Called when the command is initially scheduled.
@@ -32,13 +36,18 @@ public class ShootBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_ShooterSubsystem.shooterSpeedUp(5000);
+    m_ShooterSubsystem.shooterSpeedUp(2375);
+
+    if(m_ShooterSubsystem.getShooterRPM() > 2375){
+      m_IntakeSubsystem.conveyorMotorOn(Constants.IntakeConstants.kConveyorSpeed);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     m_ShooterSubsystem.stopShooter();
+    m_IntakeSubsystem.conveyorMotorOff();
   }
 
   // Returns true when the command should end.

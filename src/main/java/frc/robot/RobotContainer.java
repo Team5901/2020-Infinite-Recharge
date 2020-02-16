@@ -79,10 +79,13 @@ public class RobotContainer {
       .whenHeld(new IntakeIn(m_IntakeSubsystem));
       
     //Tower Commands
+    new JoystickButton (Controller1, Button.kY.value)
+    .whenPressed(() -> m_IntakeSubsystem.conveyorMotorOn(1))
+    .whenReleased(() -> m_IntakeSubsystem.conveyorMotorOff());
 
     //Shooter Commands
     new JoystickButton (Controller1, Button.kA.value)
-    .whenHeld(new ShootBall(m_ShooterSubsystem));
+    .whenHeld(new ShootBall(m_ShooterSubsystem,m_IntakeSubsystem));
       
     //Climber Commands
     new JoystickButton(Controller1, Button.kB.value)

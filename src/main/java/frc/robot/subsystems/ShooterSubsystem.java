@@ -48,10 +48,14 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void shooterSpeedUp(double RPM){
-      double targetVelocity_UnitsPer100ms = 2375 * 2048 / 600;
+      double targetVelocity_UnitsPer100ms = RPM * 2048 / 600;
       mav.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
-      System.out.println(mav.getSelectedSensorVelocity()/2048*600);
+      //System.out.println(mav.getSelectedSensorVelocity()/2048*600);
       //mav.set(0.9);
+  }
+
+  public double getShooterRPM(){
+      return (mav.getSelectedSensorVelocity()/2048*600);
   }
 
   public void stopShooter(){
