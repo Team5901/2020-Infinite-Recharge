@@ -9,24 +9,21 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.RobotPorts;
 
 public class DrivetrainSubsystem extends SubsystemBase {
   
   private final WPI_TalonFX leftFrontDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
-  private final WPI_TalonFX leftRearDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
-  private final WPI_TalonFX rightFrontDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
-  private final WPI_TalonFX rightRearDriveMotor = new WPI_TalonFX(RobotPorts.kLeftFrontMotor);
+  private final WPI_TalonFX leftRearDriveMotor = new WPI_TalonFX(RobotPorts.kLeftRearMotor);
+  private final WPI_TalonFX rightFrontDriveMotor = new WPI_TalonFX(RobotPorts.kRightFrontMotor);
+  private final WPI_TalonFX rightRearDriveMotor = new WPI_TalonFX(RobotPorts.kRightRearMotor);
 
   // The motors on the left side of the drive.
   private final SpeedControllerGroup m_leftMotors =
@@ -45,26 +42,17 @@ public class DrivetrainSubsystem extends SubsystemBase {
   // Shifter Solenoid
   private final Solenoid SolarNoise = new Solenoid(RobotPorts.kShifterSolenoid);
 
-
-  /**
-   * Creates a new DriveSubsystem.
-   */
   public DrivetrainSubsystem() {
     // Sets the distance per pulse for the encoders
     leftFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
+    rightFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
   }
 
-  /**
-   * Drives the robot using arcade controls.
-   *
-   * @param fwd the commanded forward movement
-   * @param rot the commanded rotation
-   */
   public void arcadeDrive(double fwd, double rot) {
     m_drive.arcadeDrive(Math.pow(fwd,3),Math.pow(rot,3));
   }
   
-  /*public void AutoDroive(double distance) {
+  public void AutoDroive(double distance) {
     //find absolute error
     double error = Math.abs(distance - getAverageEncoderDistance());
 
@@ -78,7 +66,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     else {
       arcadeDrive(0,0);
     }
-  }*/
+  }
   
   public void turnControl(double angleTarget){
     double angle = m_gyro.getAngle();
@@ -92,37 +80,20 @@ public class DrivetrainSubsystem extends SubsystemBase {
     }
   }
 
-  /**
-   * Resets the drive encoders to currently read a position of 0.
-   */
   public void resetEncoders() {
-    //m_leftEncoder.reset();
-    //m_rightEncoder.reset();
+    leftFrontDriveMotor.setSelectedSensorPosition(0);
+    rightFrontDriveMotor.setSelectedSensorPosition(0);
   }
 
-  /**
-   * Gets the average distance of the two encoders.
-   *
-   * @return the average of the two encoder readings
-   */
-  /*public double getAverageEncoderDistance() {
-    return (m_leftEncoder.getDistance() + m_rightEncoder.getDistance()) / 2.0;
-  }*/
+  public double getAverageEncoderDistance() {
+    double distancePerUnit=6*Math.PI/2048;
+    return (getLeftEncoder()+getRightEncoder())*distancePerUnit / 2.0;
+  }
 
-  /**
-   * Gets the left drive encoder.
-   *
-   * @return the left drive encoder
-   */
   public double getLeftEncoder() {
     return leftFrontDriveMotor.getSelectedSensorPosition();
   }
 
-  /**
-   * Gets the right drive encoder.
-   *
-   * @return the right drive encoder
-   */
   public double getRightEncoder() {
     return rightFrontDriveMotor.getSelectedSensorPosition();
   }
@@ -131,16 +102,15 @@ public class DrivetrainSubsystem extends SubsystemBase {
     return m_gyro.getAngle();
   }
 
-  /**
-   * Sets the max output of the drive.  Useful for scaling the drive to drive more slowly.
-   *
-   * @param maxOutput the maximum output to which the drive will be constrained
-   */
+  public void resetAngle(){
+    m_gyro.reset();
+  }
+
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
   }
 
-//shiftIn pulls in
+  //shiftIn pulls in
   public void shiftIn() {
     SolarNoise.set(false);
   
