@@ -36,7 +36,7 @@ public class ShooterSubsystem extends SubsystemBase {
     mav.configPeakOutputReverse(-1, ShooterConstants.kTimeoutMs);
 
     // Reverse motor direction
-    mav.setInverted(true);
+    mav.setInverted(false);
 
     //Set PID values
     mav.config_kF(ShooterConstants.kPIDLoopIdx, 0.09, 0);

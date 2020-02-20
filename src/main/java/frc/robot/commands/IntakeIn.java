@@ -19,7 +19,7 @@ public class IntakeIn extends CommandBase {
   public IntakeIn(IntakeSubsystem subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_IntakeSubsystem = subsystem;
-    addRequirements(subsystem);
+    addRequirements();
   }
 
   // Called when the command is initially scheduled.

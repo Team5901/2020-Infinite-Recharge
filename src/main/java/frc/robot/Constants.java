@@ -74,10 +74,10 @@ public final class Constants {
 
         //Gyro
     }
-
+    //intake
     public static final class IntakeConstants {
-        public static final double kIntakeSpeed = 0.75;
-        public static final double kConveyorSpeed = 0.5;
+        public static final double kIntakeSpeed = 1;
+        public static final double kConveyorSpeed = 1.0;
     }
 
     public static final class ShooterConstants{

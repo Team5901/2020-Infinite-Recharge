@@ -86,7 +86,8 @@ public class RobotContainer {
       
     //Climber Commands
     new JoystickButton(Controller1, Button.kB.value)
-    .whenHeld(new RaiseElevator(m_TheClimb));
+    .whenPressed(() -> m_IntakeSubsystem.compressorOn())
+    .whenReleased(() -> m_IntakeSubsystem.compressorOff());
     
   }
 

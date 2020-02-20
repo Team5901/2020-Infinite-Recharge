@@ -13,7 +13,7 @@ import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-
+//import some sort of timer
 public class ShootBall extends CommandBase {
   /**
    * Creates a new BallShooter.
@@ -25,7 +25,7 @@ public class ShootBall extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     m_ShooterSubsystem = subsystem1;
     m_IntakeSubsystem = subsystem2;
-    addRequirements(subsystem1,subsystem2);
+    addRequirements();
   }
 
   // Called when the command is initially scheduled.

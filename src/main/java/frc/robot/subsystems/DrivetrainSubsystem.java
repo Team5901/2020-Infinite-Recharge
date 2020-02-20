@@ -49,7 +49,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(Math.pow(fwd,3),Math.pow(rot,3));
+
+    double x = Math.pow(fwd,3);
+    double y = Math.pow(rot,3);
+    m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
   }
   
   public void AutoDroive(double distance) {
@@ -61,16 +64,16 @@ public class DrivetrainSubsystem extends SubsystemBase {
       arcadeDrive(Constants.DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
     }
     else if (getAverageEncoderDistance() < 0 && error > Constants.DriveConstants.kAutoDistanceError) {
-      arcadeDrive(Constants.DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
+      arcadeDrive(-Constants.DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
     }
     else {
       arcadeDrive(0,0);
     }
   }
   
-  public void turnControl(double angleTarget){
+  public void TurnControl(double AngleTarget){
     double angle = m_gyro.getAngle();
-    double target = angle + angleTarget;
+    double target = angle + AngleTarget;
 
     if(Math.abs(target) < Constants.DriveConstants.kAutoAngleError){
       arcadeDrive(0, -Math.signum(target)*(Math.abs(target)*Constants.DriveConstants.kAutoTurnRatio) + Constants.DriveConstants.kAutoMinRotRatio);

@@ -10,46 +10,42 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class AutoDrive extends CommandBase {
-  private final DrivetrainSubsystem m_DrivetrainSubsystem;
-  private final double m_distance;
-
+public class AutoTurn extends CommandBase {
   /**
-   * 
-   * Creates a new autodrive.
+   * Creates a new AutoTurn.
    */
-  public AutoDrive(double distance, DrivetrainSubsystem drive) {
+  private final DrivetrainSubsystem m_DrivetrainSubsystem;
+  private final double m_angle; 
+
+  public AutoTurn(double angle , DrivetrainSubsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
-    //m_DrivetrainSubsystem = subsystem;
-    //addRequirements();
-    m_distance = distance;
+    m_angle = angle;
     m_DrivetrainSubsystem = drive;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_DrivetrainSubsystem.resetEncoders();
+    m_DrivetrainSubsystem.resetAngle();
   }
-  
- 
+
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  //18.84in(wheel circumference) = 0.48m. 
   public void execute() {
-    m_DrivetrainSubsystem.arcadeDrive(.50, 0);
+    m_DrivetrainSubsystem.TurnControl(m_angle);
+  
   }
-  
-  
+
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_DrivetrainSubsystem.arcadeDrive(0, 0);
+    m_DrivetrainSubsystem.TurnControl(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(m_DrivetrainSubsystem.getAverageEncoderDistance()) >= m_distance;
+    return Math.abs(m_DrivetrainSubsystem.getAngle()) >= m_angle;
   }
 }
