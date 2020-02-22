@@ -25,7 +25,7 @@ public class AutoShoot3Position extends SequentialCommandGroup {
     
       addCommands(
       new AutoTurn(180, drive),
-      new ShootBall(shoot, intake),
+      new ShootBall(shoot, intake).withTimeout(5),
       new AutoTurn(-135, drive),
       new AutoDrive(200, drive)
       ) ;

@@ -37,7 +37,7 @@ public class RobotContainer {
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
   private final ClimberSubsystem m_TheClimb= new ClimberSubsystem();
-  private final AutoDrive m_autoCommand = new AutoDrive(m_DrivetrainSubsystem);
+  private final AutoDrive m_autoCommand = new AutoDrive(1, m_DrivetrainSubsystem);
 
   XboxController Controller1 = new XboxController(0);
   XboxController Controller2 = new XboxController(1);

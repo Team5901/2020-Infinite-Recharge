@@ -5,6 +5,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+//STARTING POSITION: INCHES FROM WALL
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -34,9 +36,11 @@ public class AutoFarLeftShoot5 extends SequentialCommandGroup {
       
       new ParallelCommandGroup(
         new AutoDrive(175.86, drive),
-        new TimedCommand(new AutoAim(drive, see), 4),
-      new AutoTurn(180, drive),
+        new AutoAim(drive, see)),
+        new ShootBall(shoot, intake).withTimeout(4),
+      new AutoTurn(180, drive).withTimeout(4),
       new AutoDrive(30, drive)
+      
       );
     
   }

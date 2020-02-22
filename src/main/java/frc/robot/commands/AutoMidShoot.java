@@ -8,6 +8,9 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -16,15 +19,14 @@ public class AutoMidShoot extends SequentialCommandGroup {
   /**
    * Creates a new AutoMidShoot.
    */
-  public AutoMidShoot() {
+  public AutoMidShoot(DrivetrainSubsystem drive, ShooterSubsystem shoot, IntakeSubsystem intake) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super(/*
-      addCommand(
-        AutoTurn(135, drive)
-        ShootBall()
-        AutoDrive(-50, drive)
-      )
-    */);
+      addCommands(
+        new AutoTurn(135, drive),
+        new ShootBall(shoot, intake).withTimeout(5),
+        new AutoDrive(-50, drive)
+      
+      );
   }
 }
