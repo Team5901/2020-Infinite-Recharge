@@ -73,18 +73,11 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public boolean ballExist(){
-    bill.get();
-     return true;
-  
-    }
-  
+    //reverse input since 1 = no ball 0 = ball
+    return !bill.get();
     
-  
-  
-
-
-
-  
+   }
+    
 
   @Override
   public void periodic()

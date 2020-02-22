@@ -7,10 +7,47 @@
 
 package frc.robot;
 
+/*
+
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
+
+
+
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
+
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
+
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+
+
+
+
+
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+
+import org.firstinspires.ftc.robotcore.internal.system.Deadline;
+
+import java.util.concurrent.TimeUnit;
+*/
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.AutoDrive;
+import frc.robot.commands.AutoFarLeftShoot5;
+import frc.robot.commands.AutoMidDefense;
+import frc.robot.commands.AutoMidShoot;
+import frc.robot.commands.AutoReverse;
+import frc.robot.commands.AutoShoot3Position;
+import frc.robot.commands.AutoTurn;
 import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.RaiseElevator;
@@ -37,7 +74,9 @@ public class RobotContainer {
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
   private final ClimberSubsystem m_TheClimb= new ClimberSubsystem();
-  private final AutoDrive m_autoCommand = new AutoDrive(1, m_DrivetrainSubsystem);
+  private final SendableChooser<Command> auto = new SendableChooser<Command>();
+  private final SendableChooser<String> autou = new SendableChooser<String>();
+
 
   XboxController Controller1 = new XboxController(0);
   XboxController Controller2 = new XboxController(1);
@@ -54,6 +93,20 @@ public class RobotContainer {
               
     // Configure the button bindings
     configureButtonBindings();
+
+    //Autonomous procedures
+    auto.addOption("AutoDrive", new AutoDrive(0.5, m_DrivetrainSubsystem));
+    auto.addOption("FarLeftShoot 5 ", new AutoFarLeftShoot5(m_DrivetrainSubsystem, m_IntakeSubsystem, m_ShooterSubsystem, m_VisionSubsystem));
+    auto.addOption("Mid Shoot", new AutoMidShoot(m_DrivetrainSubsystem, m_ShooterSubsystem, m_IntakeSubsystem));
+    auto.addOption("Reverse", new AutoReverse(m_DrivetrainSubsystem));
+    auto.addOption("Shoot 3 then position", new AutoShoot3Position(m_DrivetrainSubsystem, m_ShooterSubsystem, m_IntakeSubsystem));
+    auto.addOption("Auto Turn", new AutoTurn(0, m_DrivetrainSubsystem));
+    auto.addOption("Straight mid block shooters", new AutoMidDefense(m_DrivetrainSubsystem));
+    //Autonomous positions
+    autou.addOption("Middle", "Middle");
+    //middle, mid l/r, far l/r
+
+    SmartDashboard.putData("Auto Chooser", auto);
   }
 
   /**
@@ -99,6 +152,9 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    
+    
+    
+    return auto.getSelected();
   }
 }

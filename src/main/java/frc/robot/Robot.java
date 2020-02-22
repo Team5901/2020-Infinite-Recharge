@@ -45,14 +45,19 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     
-    /*auto = new SendableChooser<>();
-    auto.addDefault(autoDrive, new AutoDrive(distance, drive));
-    auto.addDefault(autoAim, new AutoAim(subsystem1, subsystem2));
-    auto.addDefault(farLeftshot, new AutoFarLeftShoot5(drive, intake, shoot, see));
-    auto.addDefault(midShoot, new AutoMidShoot());
+    //auto = new SendableChooser<>();
+
+    SendableChooser<String> auto = new SendableChooser<String>();
+
+  
+    //try with addOption
+    
+    /*
+    auto.addDefault(FarLeftShoot, new AutoFarLeftShoot5(drive, intake, shoot, see));
+    auto.addDefault(MidShoot, new AutoMidShoot());
     auto.addDefault(Reverse, new AutoReverse(drive));
-    auto.addDefault(shootPosition, new AutoShoot3Position(drive, shoot, intake));
-    auto.addDefault(autoTurn, new AutoTurn(angle, drive));
+    auto.addDefault(ShootPosition, new AutoShoot3Position(drive, shoot, intake));
+    auto.addDefault(AutoTurn, new AutoTurn(angle, drive));
     */
     
   }
