@@ -10,8 +10,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.RobotPorts;
@@ -25,7 +28,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private final WPI_TalonSRX fronzack = new WPI_TalonSRX(RobotPorts.kConveyorMotor);
   private final Compressor joe = new Compressor(0);
   private final Solenoid phil = new Solenoid(RobotPorts.kIntakeSolenoid);
-  private final AnalogInput bill = new AnalogInput(0);
+  private final DigitalInput bill = new DigitalInput(0);
   public IntakeSubsystem() {
     boss.setInverted(true);
 
@@ -70,15 +73,13 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public boolean ballExist(){
-    bill.setAverageBits(4);
-    if(bill.getVoltage()>2.7){
-      return true;
+    bill.get();
+     return true;
+  
     }
-    else {
-      return false;
-    }
+  
     
-  }
+  
   
 
 
@@ -86,7 +87,8 @@ public class IntakeSubsystem extends SubsystemBase {
   
 
   @Override
-  public void periodic() {
+  public void periodic()
+   {
     // This method will be called once per scheduler run
   }
 }

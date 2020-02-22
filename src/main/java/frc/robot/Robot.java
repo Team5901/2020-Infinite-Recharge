@@ -12,8 +12,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoDrive;
+import frc.robot.commands.AutoFarLeftShoot5;
+import frc.robot.commands.AutoMidShoot;
+import frc.robot.commands.AutoReverse;
+import frc.robot.commands.AutoShoot3Position;
+import frc.robot.commands.AutoTurn;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.VisionSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -35,6 +44,17 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    
+    /*auto = new SendableChooser<>();
+    auto.addDefault(autoDrive, new AutoDrive(distance, drive));
+    auto.addDefault(autoAim, new AutoAim(subsystem1, subsystem2));
+    auto.addDefault(farLeftshot, new AutoFarLeftShoot5(drive, intake, shoot, see));
+    auto.addDefault(midShoot, new AutoMidShoot());
+    auto.addDefault(Reverse, new AutoReverse(drive));
+    auto.addDefault(shootPosition, new AutoShoot3Position(drive, shoot, intake));
+    auto.addDefault(autoTurn, new AutoTurn(angle, drive));
+    */
+    
   }
 
   /**
