@@ -40,7 +40,7 @@ public class ShooterSubsystem extends SubsystemBase {
     mav.setInverted(false);
 
     //Set PID values
-    mav.config_kF(ShooterConstants.kPIDLoopIdx, 0.09, 0);
+    mav.config_kF(ShooterConstants.kPIDLoopIdx, ShooterConstants.kF, 0);
     mav.config_kP(ShooterConstants.kPIDLoopIdx, ShooterConstants.kP, 0);
     mav.config_kI(ShooterConstants.kPIDLoopIdx, ShooterConstants.kI, 0);
     mav.config_kD(ShooterConstants.kPIDLoopIdx, ShooterConstants.kD, 0);
@@ -51,8 +51,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shooterSpeedUp(double RPM){
       double targetVelocity_UnitsPer100ms = RPM * 2048 / 600;
       mav.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
-      //System.out.println(mav.getSelectedSensorVelocity()/2048*600);
-      //mav.set(0.9);
+ 
   }
 
   public double getShooterRPM(){

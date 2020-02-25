@@ -37,9 +37,9 @@ public class IntakeIn extends CommandBase {
     m_IntakeSubsystem.intakeMotorOn(IntakeConstants.kIntakeSpeed);
 
     //if ball detected
-     if (m_IntakeSubsystem.ballExist()){
+     if (m_IntakeSubsystem.ballExist() && !m_IntakeSubsystem.towerFull()){
       System.out.println("Ball Exists");
-      m_IntakeSubsystem.conveyorMotorOn(0.5);
+      m_IntakeSubsystem.conveyorMotorOn(IntakeConstants.kConveyorSpeed);
 
     }
     else {

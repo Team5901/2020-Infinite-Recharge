@@ -29,6 +29,7 @@ public class IntakeSubsystem extends SubsystemBase {
   private final Compressor joe = new Compressor(0);
   private final Solenoid phil = new Solenoid(RobotPorts.kIntakeSolenoid);
   private final DigitalInput bill = new DigitalInput(0);
+  private final DigitalInput bob = new DigitalInput(1);
   public IntakeSubsystem() {
     boss.setInverted(true);
 
@@ -75,8 +76,14 @@ public class IntakeSubsystem extends SubsystemBase {
   public boolean ballExist(){
     //reverse input since 1 = no ball 0 = ball
     return !bill.get();
-    
-   }
+ }
+
+ public boolean towerFull(){
+  //reverse input since 1 = no ball 0 = ball
+  return !bob.get();
+}
+
+
     
 
   @Override

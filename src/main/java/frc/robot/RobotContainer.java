@@ -41,6 +41,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.AutoFarLeftShoot5;
 import frc.robot.commands.AutoMidDefense;
@@ -139,8 +140,7 @@ public class RobotContainer {
       
     //Climber Commands
     new JoystickButton(Controller1, Button.kB.value)
-    .whenPressed(() -> m_IntakeSubsystem.compressorOn())
-    .whenReleased(() -> m_IntakeSubsystem.compressorOff());
+    .whenHeld(new AutoAim(m_DrivetrainSubsystem,m_VisionSubsystem));
     
   }
 
