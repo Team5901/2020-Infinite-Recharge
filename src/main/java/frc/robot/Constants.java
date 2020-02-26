@@ -81,7 +81,8 @@ public final class Constants {
     }
 
     public static final class ShooterConstants{
-        public static final double kShooterRPM = 3570;
+        public static final double kShooterRPM = 3570; //Initiation
+        //public static final double kShooterRPM = 5000; //Trench
         public static final int kMotorPort = 5;
         public static final int kTimeoutMs = 30;
     	public static final int kSlotIdx = 0;
