@@ -38,7 +38,7 @@ public class ShootBall extends CommandBase {
   public void execute() {
     m_ShooterSubsystem.shooterSpeedUp(Constants.ShooterConstants.kShooterRPM);
 
-    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShooterRPM-500){
+    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShooterRPM-200){
       m_IntakeSubsystem.conveyorMotorOn(Constants.IntakeConstants.kConveyorSpeed);
     }
   }
