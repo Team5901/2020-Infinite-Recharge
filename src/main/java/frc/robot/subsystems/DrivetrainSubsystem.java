@@ -75,7 +75,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double angle = m_gyro.getAngle();
     double target = angle + AngleTarget;
 
-    if(Math.abs(target) < Constants.DriveConstants.kAutoAngleError){
+    if(Math.abs(target) > Constants.DriveConstants.kAutoAngleError){
       arcadeDrive(0, -Math.signum(target)*(Math.abs(target)*Constants.DriveConstants.kAutoTurnRatio) + Constants.DriveConstants.kAutoMinRotRatio);
     }
     else {

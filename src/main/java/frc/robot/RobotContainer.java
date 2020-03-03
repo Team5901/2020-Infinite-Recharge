@@ -53,6 +53,8 @@ import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.ShootBall;
+import frc.robot.commands.Shoot_Pass;
+import frc.robot.commands.Shoot_far_17;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -129,17 +131,27 @@ public class RobotContainer {
     new JoystickButton (Controller1, Button.kBumperLeft.value)
       .whenHeld(new IntakeIn(m_IntakeSubsystem));
       
-    //Tower Commands
-    new JoystickButton (Controller1, Button.kY.value)
+    //Conveyor Commands
+    new JoystickButton (Controller1, Button.kA.value)
     .whenPressed(() -> m_IntakeSubsystem.conveyorMotorOn(1))
     .whenReleased(() -> m_IntakeSubsystem.conveyorMotorOff());
 
-    //Shooter Commands
-    new JoystickButton (Controller1, Button.kA.value)
+    //Shooter Commands (make one for pass and far shoot)
+    new JoystickButton (Controller1, Button.kY.value)
     .whenHeld(new ShootBall(m_ShooterSubsystem,m_IntakeSubsystem));
+
+    new JoystickButton (Controller1, Button.kX.value)
+    .whenHeld(new Shoot_far_17(m_ShooterSubsystem,m_IntakeSubsystem));
+
+    new JoystickButton (Controller1, Button.kB.value)
+    .whenHeld(new Shoot_Pass(m_ShooterSubsystem,m_IntakeSubsystem));
       
     //Climber Commands
-    new JoystickButton(Controller1, Button.kB.value)
+    new JoystickButton(Controller1, Button.kBumperRight.value)
+    .whenHeld(new RaiseElevator(m_TheClimb));
+    
+    //Autoaim Commands
+    new JoystickButton(Controller1, Button.kStart.value)
     .whenHeld(new AutoAim(m_DrivetrainSubsystem,m_VisionSubsystem));
     
   }

@@ -77,12 +77,18 @@ public final class Constants {
     //intake
     public static final class IntakeConstants {
         public static final double kIntakeSpeed = 0.5;
-        public static final double kConveyorSpeed = 0.3;
+        public static final double kConveyorSpeed = 0.5;
     }
 
     public static final class ShooterConstants{
-        public static final double kShooterRPM = 3570; //Initiation
-        //public static final double kShooterRPM = 5000; //Trench
+        /*
+        Do i have to make a new motor for each command?
+        Can i assign all the new motors to the same port, so i wouldnt need to do any extra wiring? 
+        */
+        public static final double kShooter_LineRPM = 3750; //Initiation
+        public static final double kShooter_17RPM = 5000; //Trench
+        public static final double kShooter_passRPM = 500; //pass
+
         public static final int kMotorPort = 5;
         public static final int kTimeoutMs = 30;
     	public static final int kSlotIdx = 0;

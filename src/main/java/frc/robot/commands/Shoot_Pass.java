@@ -14,14 +14,14 @@ import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 //import some sort of timer
-public class ShootBall extends CommandBase {
+public class Shoot_Pass extends CommandBase {
   /**
    * Creates a new BallShooter.
    */
   final ShooterSubsystem m_ShooterSubsystem;
   final IntakeSubsystem m_IntakeSubsystem;
 
-  public ShootBall(ShooterSubsystem subsystem1, IntakeSubsystem subsystem2) {
+  public Shoot_Pass(ShooterSubsystem subsystem1, IntakeSubsystem subsystem2) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_ShooterSubsystem = subsystem1;
     m_IntakeSubsystem = subsystem2;
@@ -36,9 +36,9 @@ public class ShootBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_ShooterSubsystem.shooterSpeedUp(Constants.ShooterConstants.kShooter_LineRPM);
-
-    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShooter_LineRPM-500){
+    m_ShooterSubsystem.shooterSpeedUp(Constants.ShooterConstants.kShooter_passRPM);
+          //MODIFY RPM FOR 17 FOOT RANGE
+    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShooter_passRPM-500){
       m_IntakeSubsystem.conveyorMotorOn(Constants.IntakeConstants.kConveyorSpeed);
     }
   }
