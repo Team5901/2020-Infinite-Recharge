@@ -61,12 +61,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double error = Math.abs(distance - getAverageEncoderDistance());
 
     //if distance is positive and error is greater than 
-    if(getAverageEncoderDistance() > 0 && error > Constants.DriveConstants.kAutoDistanceError){      
+    if(error > Constants.DriveConstants.kAutoDistanceError){      
       arcadeDrive(Constants.DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
-    }
-    else if (getAverageEncoderDistance() < 0 && error > Constants.DriveConstants.kAutoDistanceError) {
-      arcadeDrive(-Constants.DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
-    }
+    }  
     else {
       arcadeDrive(0,0);
     }
@@ -132,6 +129,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());
+    SmartDashboard.putNumber("Angle Heading",getAngle());
     //This method will be called once per scheduler run
   }
 

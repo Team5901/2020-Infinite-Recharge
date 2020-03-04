@@ -56,7 +56,8 @@ public class VisionSubsystem extends SubsystemBase {
 
   @Override
   public void periodic(){
-    SmartDashboard.putBoolean("angle",Math.abs(getTx())>2);
+    SmartDashboard.putBoolean("Limelight Target Angle",Math.abs(getTx())<2);
+    SmartDashboard.putBoolean("Limelight Target Available",targetAvailable());
   }
   
 

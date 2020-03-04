@@ -26,6 +26,7 @@ public class AutoTurn extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println(" AutoTurn " + m_angle + "degrees");
     m_DrivetrainSubsystem.resetAngle();
   }
 

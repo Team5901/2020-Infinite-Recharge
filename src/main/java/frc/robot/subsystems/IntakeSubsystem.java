@@ -89,6 +89,7 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic()
    {
+     SmartDashboard.putBoolean("Tower Full", towerFull());
     // This method will be called once per scheduler run
   }
 }
