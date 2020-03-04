@@ -27,7 +27,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
   public void setTheclimb(double value) {
     LeftClimber.set(value);
-    RightClimber.set(value);
+    RightClimber.set(-value);
     
  
   }

@@ -102,6 +102,8 @@ public final class Constants {
 
     public static final class ClimberConstants{
 
+        public static final double kLeftClimberMotor = .3;
+
     }
 
 

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.ClimberSubsystem;
 
 public class RaiseElevator extends CommandBase {
@@ -30,7 +31,7 @@ public class RaiseElevator extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_TheClimb.setTheclimb(.5);
+    m_TheClimb.setTheclimb(Constants.ClimberConstants.kLeftClimberMotor);
   }
 
   // Called once the command ends or is interrupted.

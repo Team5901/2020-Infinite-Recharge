@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.RobotPorts;
@@ -128,5 +129,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     return SolarNoise.get();
   }
 
+  @Override
+  public void periodic() {
+    SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());
+    //This method will be called once per scheduler run
+  }
 
 }

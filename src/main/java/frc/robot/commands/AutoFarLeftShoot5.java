@@ -30,14 +30,14 @@ public class AutoFarLeftShoot5 extends SequentialCommandGroup {
        addCommands(
       new AutoDrive(86.63, drive),
       new ParallelCommandGroup(
-        new IntakeIn(intake),
+        new IntakeIn(intake).withTimeout(2),
         new AutoDrive(76, drive)),
       new AutoTurn(-135, drive),
       
       new ParallelCommandGroup(
         new AutoDrive(175.86, drive),
-        new AutoAim(drive, see)),
-        new ShootBall(shoot, intake).withTimeout(4),
+        new AutoAim(drive, see).withTimeout(4)),
+      new ShootBall(shoot, intake).withTimeout(4),
       new AutoTurn(180, drive).withTimeout(4),
       new AutoDrive(30, drive)
       

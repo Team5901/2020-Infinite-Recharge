@@ -106,7 +106,12 @@ public class RobotContainer {
     auto.addOption("Auto Turn", new AutoTurn(0, m_DrivetrainSubsystem));
     auto.addOption("Straight mid block shooters", new AutoMidDefense(m_DrivetrainSubsystem));
     //Autonomous positions
+    autou.addOption("Far Left", "Far Left");
+    autou.addOption("Middle Left", "Middle Left");
     autou.addOption("Middle", "Middle");
+    autou.addOption("Middle Right", "Middle Right");
+    autou.addOption("Far Right", "Far Right");
+
     //middle, mid l/r, far l/r
 
     SmartDashboard.putData("Auto Chooser", auto);
@@ -124,7 +129,7 @@ public class RobotContainer {
       .whenReleased(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kHighSpeedRatio));
 
     //Drivetrain Commands
-    new JoystickButton (Controller1, Button.kX.value)
+    new JoystickButton (Controller1, Button.kBack.value)
     .whenHeld(new GearShift(m_DrivetrainSubsystem));
       
     //Intake Commands (go out )

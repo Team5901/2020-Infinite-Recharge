@@ -37,7 +37,7 @@ public class AutoDrive extends CommandBase {
   @Override
   //18.84in(wheel circumference) = 0.48m. 
   public void execute() {
-    m_DrivetrainSubsystem.arcadeDrive(.50, 0);
+    m_DrivetrainSubsystem.arcadeDrive(.5, 0);
   }
   
   
