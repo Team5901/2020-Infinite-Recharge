@@ -47,6 +47,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     // Sets the distance per pulse for the encoders
     leftFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     rightFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
+
+    leftFrontDriveMotor.configOpenloopRamp(0.3,10);
+    leftRearDriveMotor.configOpenloopRamp(0.3,10);
+    rightFrontDriveMotor.configOpenloopRamp(0.3,10);
+    rightFrontDriveMotor.configOpenloopRamp(0.3,10);
   }
 
   public void arcadeDrive(double fwd, double rot) {
