@@ -31,6 +31,7 @@ public class ShootBall extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,7 +39,7 @@ public class ShootBall extends CommandBase {
   public void execute() {
     m_ShooterSubsystem.shooterSpeedUp(Constants.ShooterConstants.kShooter_LineRPM);
 
-    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShooter_LineRPM-500){
+    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShooter_LineRPM-250){
       m_IntakeSubsystem.conveyorMotorOn(Constants.IntakeConstants.kConveyorSpeed);
     }
   }

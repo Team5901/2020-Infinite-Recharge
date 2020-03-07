@@ -76,15 +76,12 @@ public final class Constants {
     }
     //intake
     public static final class IntakeConstants {
-        public static final double kIntakeSpeed = 0.5;
-        public static final double kConveyorSpeed = 0.5;
+        public static final double kIntakeSpeed = 0.75; // works with bumper
+        public static final double kConveyorSpeed = 0.75;
     }
 
     public static final class ShooterConstants{
-        /*
-        Do i have to make a new motor for each command?
-        Can i assign all the new motors to the same port, so i wouldnt need to do any extra wiring? 
-        */
+        
         public static final double kShooter_LineRPM = 3750; //Initiation
         public static final double kShooter_17RPM = 5000; //Trench
         public static final double kShooter_passRPM = 500; //pass
@@ -102,7 +99,7 @@ public final class Constants {
 
     public static final class ClimberConstants{
 
-        public static final double kLeftClimberMotor = .3;
+        public static final double kLeftClimberMotor = 0.3;
 
     }
 

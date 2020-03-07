@@ -51,6 +51,7 @@ import frc.robot.commands.AutoShoot3Position;
 import frc.robot.commands.AutoTurn;
 import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
+import frc.robot.commands.LowerElevator;
 import frc.robot.commands.RaiseElevator;
 import frc.robot.commands.ShootBall;
 import frc.robot.commands.Shoot_Pass;
@@ -90,7 +91,7 @@ public class RobotContainer {
   public RobotContainer() {
 
     //Add default commands here
-    m_DrivetrainSubsystem.setDefaultCommand(new RunCommand(() -> m_DrivetrainSubsystem.arcadeDrive(
+    m_DrivetrainSubsystem.setDefaultCommand(new RunCommand(() -> m_DrivetrainSubsystem.cougarDrive(
             Controller1.getY(GenericHID.Hand.kLeft),
             -Controller1.getX(GenericHID.Hand.kRight)), m_DrivetrainSubsystem));
               
@@ -152,8 +153,10 @@ public class RobotContainer {
     .whenHeld(new Shoot_Pass(m_ShooterSubsystem,m_IntakeSubsystem));
       
     //Climber Commands
-    new JoystickButton(Controller1, Button.kBumperRight.value)
+    new JoystickButton(Controller1, Button.kStickLeft.value)
     .whenHeld(new RaiseElevator(m_TheClimb));
+    new JoystickButton(Controller1, Button.kBumperRight.value)
+    .whenHeld(new LowerElevator(m_TheClimb));
     
     //Autoaim Commands
     new JoystickButton(Controller1, Button.kStart.value)
@@ -170,8 +173,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
-    
-    
+   
     return auto.getSelected();
   }
 }

@@ -54,23 +54,31 @@ public class DrivetrainSubsystem extends SubsystemBase {
     rightFrontDriveMotor.configOpenloopRamp(0.3,10);
   }
 
-  public void arcadeDrive(double fwd, double rot) {
-
-    double x = Math.pow(fwd,3);
-    double y = Math.pow(rot,3);
+  public void cougarDrive(double fwd, double rot) {
+    System.out.println("Forward: " + fwd);
+    double x = Math.pow(fwd,3.0);
+  
+    double y = Math.pow(rot,3.0);
+    System.out.println("1st x: " + x);
     m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
+
+    System.out.println("2nd x: " + x);
   }
   
   public void AutoDroive(double distance) {
+    System.out.println("AutoDroive distance: " + distance);
     //find absolute error
     double error = Math.abs(distance - getAverageEncoderDistance());
-
+    System.out.println("Error: " + error);
     //if distance is positive and error is greater than 
     if(error > Constants.DriveConstants.kAutoDistanceError){      
-      arcadeDrive(Constants.DriveConstants.kAutoSpeedRatio, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
+      cougarDrive(1, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
+      System.out.println("Auto Speed Ratio: " + Constants.DriveConstants.kAutoSpeedRatio);
+      System.out.println("alkjdjdsah");
     }  
     else {
-      arcadeDrive(0,0);
+      System.out.println("Else Statement");
+      cougarDrive(0,0);
     }
   }
   
@@ -79,10 +87,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double target = angle + AngleTarget;
 
     if(Math.abs(target) > Constants.DriveConstants.kAutoAngleError){
-      arcadeDrive(0, -Math.signum(target)*(Math.abs(target)*Constants.DriveConstants.kAutoTurnRatio) + Constants.DriveConstants.kAutoMinRotRatio);
+      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*Constants.DriveConstants.kAutoTurnRatio) + Constants.DriveConstants.kAutoMinRotRatio);
     }
     else {
-      arcadeDrive(0, 0);
+      cougarDrive(0, 0);
     }
   }
 

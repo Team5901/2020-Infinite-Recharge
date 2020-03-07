@@ -20,10 +20,10 @@ public class AutoReverse extends SequentialCommandGroup {
   public AutoReverse(DrivetrainSubsystem drive) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
-    super();
+    //super();
     addCommands(
       
-      new AutoDrive(-90, drive)
+      new AutoDrive(-3000, drive)
     );
   }
 }

@@ -22,7 +22,8 @@ public class ClimberSubsystem extends SubsystemBase {
   private final WPI_TalonSRX RightClimber= new WPI_TalonSRX(Constants.RobotPorts.kRightClimberMotor);
   
   public ClimberSubsystem() {
-
+    LeftClimber.configOpenloopRamp(0.5);
+    RightClimber.configOpenloopRamp(0.5);
   }
 
   public void setTheclimb(double value) {

@@ -32,6 +32,8 @@ public class IntakeSubsystem extends SubsystemBase {
   private final DigitalInput bob = new DigitalInput(1);
   public IntakeSubsystem() {
     boss.setInverted(true);
+    boss.configVoltageCompSaturation(11);
+    boss.enableVoltageCompensation(true);
 
   }
  
