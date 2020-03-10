@@ -99,7 +99,8 @@ public final class Constants {
 
     public static final class ClimberConstants{
 
-        public static final double kLeftClimberMotor = 0.3;
+        public static final double kClimberPwrUp = 0.5;
+        public static final double kClimberPwrDown = -0.5;
 
     }
 
