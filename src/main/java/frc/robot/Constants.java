@@ -103,6 +103,8 @@ public final class Constants {
         public static final double kClimberPwrUp = 0.3;
         public static final double kClimberPwrDown = -0.3;
 
+        public static final int kMaxElevatorHeight=10000;
+
     }
 
 

@@ -24,6 +24,10 @@ public class ClimberSubsystem extends SubsystemBase {
   public ClimberSubsystem() {
     LeftClimber.configOpenloopRamp(0.5);
     RightClimber.configOpenloopRamp(0.5);
+    LeftClimber.getSelectedSensorPosition(0);
+    LeftClimber.setSensorPhase(true);
+    LeftClimber.configForwardSoftLimitThreshold(Constants.ClimberConstants.kMaxElevatorHeight,0);
+    LeftClimber.configReverseSoftLimitThreshold(0,0);
   }
 
   public void setTheclimb(double value) {
