@@ -132,7 +132,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //CONTROLLER 1
-    new JoystickButton (Controller1, Button.kBumperRight.value)
+    new JoystickButton (Controller1, Button.kA.value)
       .whenPressed(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kLowSpeedRatio))
       .whenReleased(() -> m_DrivetrainSubsystem.setMaxOutput(Constants.DriveConstants.kHighSpeedRatio));
 
@@ -144,7 +144,7 @@ public class RobotContainer {
     new JoystickButton (Controller1, Button.kBumperLeft.value)
       .whenHeld(new IntakeIn(m_IntakeSubsystem));
     
-    new JoystickButton(Controller1, Button.kStart.value)
+    new JoystickButton(Controller1, Button.kBumperRight.value)
       .whenHeld(new Sweeper(m_IntakeSubsystem));
       
    
@@ -153,30 +153,30 @@ public class RobotContainer {
     .whenHeld(new Shoot_Pass(m_ShooterSubsystem,m_IntakeSubsystem));
 
     //Climber Commands
-    new JoystickButton(Controller1, Button.kStickLeft.value)
+    new JoystickButton(Controller1, Button.kX.value)
     .whenHeld(new RaiseElevator(m_TheClimb));
-    new JoystickButton(Controller1, Button.kBumperRight.value)
+    new JoystickButton(Controller1, Button.kY.value)
     .whenHeld(new LowerElevator(m_TheClimb));
     
     //CONTROLLER 2
 
     //Shooter Commands (make one for pass and far shoot)
-    new JoystickButton (Controller1, Button.kY.value)
+    new JoystickButton (Controller2, Button.kY.value)
     .whenHeld(new ShootBall(m_ShooterSubsystem,m_IntakeSubsystem));
 
-    new JoystickButton (Controller1, Button.kX.value)
+    new JoystickButton (Controller2, Button.kX.value)
     .whenHeld(new Shoot_far_17(m_ShooterSubsystem,m_IntakeSubsystem));
 
     //Autoaim Commands
-    new JoystickButton(Controller1, Button.kStart.value)
+    new JoystickButton(Controller2, Button.kA.value)
     .whenHeld(new AutoAim(m_DrivetrainSubsystem,m_VisionSubsystem));
      
     //Conveyor Commands
-    new JoystickButton (Controller1, Button.kA.value)
+    new JoystickButton (Controller2, Button.kBumperLeft.value)
     .whenPressed(() -> m_IntakeSubsystem.conveyorMotorOn(1))
     .whenReleased(() -> m_IntakeSubsystem.conveyorMotorOff());
             //Unjam Command
-     new JoystickButton (Controller1, Button.kA.value)
+     new JoystickButton (Controller2, Button.kBumperRight.value)
      .whenPressed(() -> m_IntakeSubsystem.conveyorMotorOn(-1))
      .whenReleased(() -> m_IntakeSubsystem.conveyorMotorOff());
   }
