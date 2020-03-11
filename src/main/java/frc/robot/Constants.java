@@ -96,11 +96,12 @@ public final class Constants {
         public static final double kI = 0;
         public static final double kD = 0.001;
 }
+    //Climber motors
 
     public static final class ClimberConstants{
 
-        public static final double kClimberPwrUp = 0.5;
-        public static final double kClimberPwrDown = -0.5;
+        public static final double kClimberPwrUp = 0.3;
+        public static final double kClimberPwrDown = -0.3;
 
     }
 
