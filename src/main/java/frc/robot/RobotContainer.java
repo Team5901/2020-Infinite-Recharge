@@ -67,6 +67,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -84,8 +85,7 @@ public class RobotContainer {
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
   private final ClimberSubsystem m_TheClimb= new ClimberSubsystem();
   private final SendableChooser<Command> auto = new SendableChooser<Command>();
-  private final SendableChooser<String> autou = new SendableChooser<String>();
-
+  
 
   XboxController Controller1 = new XboxController(0);
   XboxController Controller2 = new XboxController(1);
@@ -106,27 +106,20 @@ public class RobotContainer {
     //limelightFeed = new HttpCamera("limelight", "http://limelight.local:5800/stream.mjpg");
     //driverShuffleboardTab.add("LL", limelightFeed).withPosition(0, 0).withSize(15, 8).withProperties(Map.of("Show Crosshair", true, "Show Controls", false));
 
-    HttpCamera httpCamera = new HttpCamera("CoprocessorCamera", "http://frcvision.local:1181/stream.mjpg");
+    // httpCamera = new HttpCamera("CoprocessorCamera", "http://frcvision.local:1181/stream.mjpg");
+    //CameraServer.getInstance().addCamera(httpCamera);
+    //Shuffleboard.getTab("Driver").add(httpCamera);
+
+    HttpCamera httpCamera = new HttpCamera("CoprocessorCamera", "http://limelight.local:5800/stream.mjpg");
     CameraServer.getInstance().addCamera(httpCamera);
-    Shuffleboard.getTab("SmartDashboard")
-        .add(httpCamera);
-        
+    Shuffleboard.getTab("Driver").add(httpCamera);
+
     //Autonomous procedures
-    auto.addOption("AutoDrive", new AutoDrive(0.5, m_DrivetrainSubsystem));
+    auto.setDefaultOption("Reverse", new AutoReverse(m_DrivetrainSubsystem));
     auto.addOption("FarLeftShoot 5 ", new AutoFarLeftShoot5(m_DrivetrainSubsystem, m_IntakeSubsystem, m_ShooterSubsystem, m_VisionSubsystem));
     auto.addOption("Mid Shoot", new AutoMidShoot(m_DrivetrainSubsystem, m_ShooterSubsystem, m_IntakeSubsystem));
-    auto.addOption("Reverse", new AutoReverse(m_DrivetrainSubsystem));
     auto.addOption("Shoot 3 then position", new AutoShoot3Position(m_DrivetrainSubsystem, m_ShooterSubsystem, m_IntakeSubsystem));
-    auto.addOption("Auto Turn", new AutoTurn(0, m_DrivetrainSubsystem));
     auto.addOption("Straight mid block shooters", new AutoMidDefense(m_DrivetrainSubsystem));
-    //Autonomous positions
-    autou.addOption("Far Left", "Far Left");
-    autou.addOption("Middle Left", "Middle Left");
-    autou.addOption("Middle", "Middle");
-    autou.addOption("Middle Right", "Middle Right");
-    autou.addOption("Far Right", "Far Right");
-
-    //middle, mid l/r, far l/r
 
     SmartDashboard.putData("Auto Chooser", auto);
   }

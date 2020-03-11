@@ -54,6 +54,28 @@ public class VisionSubsystem extends SubsystemBase {
     NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(3);    
   }
 
+  public void camModeDriver(){
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(1);    
+  }
+
+  public void camModeProcessor(){
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("camMode").setNumber(0);    
+  }
+
+  public void streamModeStandard(){
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(0);    
+  }
+
+  public void takeSnapshot(){
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(1);    
+  }
+
+  public void stopSnapshot(){
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("snapshot").setNumber(0);    
+  }
+
+
+
   @Override
   public void periodic(){
     SmartDashboard.putBoolean("Limelight Target Angle",Math.abs(getTx())<2);

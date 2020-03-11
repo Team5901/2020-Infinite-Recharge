@@ -26,6 +26,7 @@ public class AutoAim extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_VisionSubsystem.takeSnapshot();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -53,6 +54,7 @@ public class AutoAim extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_VisionSubsystem.turnOffLED();
+    m_VisionSubsystem.stopSnapshot();
   }
 
   // Returns true when the command should end.
