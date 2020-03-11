@@ -24,6 +24,7 @@ public class ClimberSubsystem extends SubsystemBase {
   public ClimberSubsystem() {
     LeftClimber.configOpenloopRamp(0.5);
     RightClimber.configOpenloopRamp(0.5);
+    
   }
 
   public void setTheclimb(double value) {

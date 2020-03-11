@@ -55,14 +55,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public void cougarDrive(double fwd, double rot) {
-    System.out.println("Forward: " + fwd);
+    //System.out.println("Forward: " + fwd);
     double x = Math.pow(fwd,3.0);
   
     double y = Math.pow(rot,3.0);
-    System.out.println("1st x: " + x);
+    //System.out.println("1st x: " + x);
     m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
 
-    System.out.println("2nd x: " + x);
+    //System.out.println("2nd x: " + x);
   }
   
   public void AutoDroive(double distance) {
@@ -87,7 +87,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     double target = angle + AngleTarget;
 
     if(Math.abs(target) > Constants.DriveConstants.kAutoAngleError){
-      cougarDrive(0, -Math.signum(target)*(Math.abs(target)*Constants.DriveConstants.kAutoTurnRatio) + Constants.DriveConstants.kAutoMinRotRatio);
+      cougarDrive(0, -Math.signum(target)*((Math.abs(target)*Constants.DriveConstants.kAutoTurnRatio) + Constants.DriveConstants.kAutoMinRotRatio));
     }
     else {
       cougarDrive(0, 0);

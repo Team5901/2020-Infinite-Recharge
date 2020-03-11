@@ -44,7 +44,7 @@ public class ShooterSubsystem extends SubsystemBase {
     mav.config_kP(ShooterConstants.kPIDLoopIdx, ShooterConstants.kP, 0);
     mav.config_kI(ShooterConstants.kPIDLoopIdx, ShooterConstants.kI, 0);
     mav.config_kD(ShooterConstants.kPIDLoopIdx, ShooterConstants.kD, 0);
-    mav.configClosedloopRamp(1);
+    mav.configClosedloopRamp(0.5);
     mav.setSensorPhase(true);
   }
 
@@ -64,8 +64,9 @@ public class ShooterSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Shooter RPM",getShooterRPM());
     //This method will be called once per scheduler run
+    SmartDashboard.putNumber("Shooter RPM", getShooterRPM());
+    //System.out.println("Shooter RPM: " + getShooterRPM());
   }
 
 }

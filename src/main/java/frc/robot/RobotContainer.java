@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.HttpCamera;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 /*
@@ -41,6 +42,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.AutoAim;
@@ -104,6 +106,11 @@ public class RobotContainer {
     //limelightFeed = new HttpCamera("limelight", "http://limelight.local:5800/stream.mjpg");
     //driverShuffleboardTab.add("LL", limelightFeed).withPosition(0, 0).withSize(15, 8).withProperties(Map.of("Show Crosshair", true, "Show Controls", false));
 
+    HttpCamera httpCamera = new HttpCamera("CoprocessorCamera", "http://frcvision.local:1181/stream.mjpg");
+    CameraServer.getInstance().addCamera(httpCamera);
+    Shuffleboard.getTab("SmartDashboard")
+        .add(httpCamera);
+        
     //Autonomous procedures
     auto.addOption("AutoDrive", new AutoDrive(0.5, m_DrivetrainSubsystem));
     auto.addOption("FarLeftShoot 5 ", new AutoFarLeftShoot5(m_DrivetrainSubsystem, m_IntakeSubsystem, m_ShooterSubsystem, m_VisionSubsystem));
