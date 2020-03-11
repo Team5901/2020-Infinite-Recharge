@@ -48,16 +48,21 @@ public class DrivetrainSubsystem extends SubsystemBase {
     leftFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
     rightFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
+    leftFrontDriveMotor.setSensorPhase(true);
+    rightFrontDriveMotor.setSensorPhase(false);
+
     leftFrontDriveMotor.configOpenloopRamp(0.3,10);
     leftRearDriveMotor.configOpenloopRamp(0.3,10);
     rightFrontDriveMotor.configOpenloopRamp(0.3,10);
     rightFrontDriveMotor.configOpenloopRamp(0.3,10);
+
+
+
   }
 
   public void cougarDrive(double fwd, double rot) {
     System.out.println("Forward: " + fwd);
     double x = Math.pow(fwd,3.0);
-  
     double y = Math.pow(rot,3.0);
     System.out.println("1st x: " + x);
     m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
