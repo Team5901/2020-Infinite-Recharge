@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,17 +25,14 @@ public class ClimberSubsystem extends SubsystemBase {
   public ClimberSubsystem() {
     LeftClimber.configOpenloopRamp(0.5);
     RightClimber.configOpenloopRamp(0.5);
-    LeftClimber.getSelectedSensorPosition(0);
-    LeftClimber.setSensorPhase(true);
+    LeftClimber.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative,0,0);
     LeftClimber.configForwardSoftLimitThreshold(Constants.ClimberConstants.kMaxElevatorHeight,0);
     LeftClimber.configReverseSoftLimitThreshold(0,0);
   }
 
   public void setTheclimb(double value) {
-    LeftClimber.set(-value);
-    RightClimber.set(-value);
-    
- 
+    LeftClimber.set(value);
+    RightClimber.set(value);     
   }
   public void stopTheclimb() {
     LeftClimber.stopMotor();
@@ -42,7 +40,6 @@ public class ClimberSubsystem extends SubsystemBase {
   }
   public double getClimberheight() {
     return LeftClimber.getSelectedSensorPosition();
-
   }
 
 
