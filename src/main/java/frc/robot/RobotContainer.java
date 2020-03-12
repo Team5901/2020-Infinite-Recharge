@@ -53,6 +53,7 @@ import frc.robot.commands.AutoMidShoot;
 import frc.robot.commands.AutoReverse;
 import frc.robot.commands.AutoShoot3Position;
 import frc.robot.commands.AutoTurn;
+import frc.robot.commands.DefaultDrive;
 import frc.robot.commands.GearShift;
 import frc.robot.commands.IntakeIn;
 import frc.robot.commands.LowerElevator;
@@ -96,10 +97,10 @@ public class RobotContainer {
   public RobotContainer() {
 
     //Add default commands here
-    m_DrivetrainSubsystem.setDefaultCommand(new RunCommand(() -> m_DrivetrainSubsystem.cougarDrive(
-            Controller1.getY(GenericHID.Hand.kLeft),
-            -Controller1.getX(GenericHID.Hand.kRight)), m_DrivetrainSubsystem));
-              
+    m_DrivetrainSubsystem.setDefaultCommand(new DefaultDrive(() -> 
+             Controller1.getY(GenericHID.Hand.kLeft), () ->
+            -Controller1.getX(GenericHID.Hand.kRight), m_DrivetrainSubsystem));
+          
     // Configure the button bindings
     configureButtonBindings();
     //private HttpCamera limelightFeed;
@@ -120,7 +121,7 @@ public class RobotContainer {
     auto.addOption("Mid Shoot", new AutoMidShoot(m_DrivetrainSubsystem, m_ShooterSubsystem, m_IntakeSubsystem));
     auto.addOption("Shoot 3 then position", new AutoShoot3Position(m_DrivetrainSubsystem, m_ShooterSubsystem, m_IntakeSubsystem));
     auto.addOption("Straight mid block shooters", new AutoMidDefense(m_DrivetrainSubsystem));
-
+    auto.addOption("AutoStraight",new AutoDrive(100, m_DrivetrainSubsystem));
     SmartDashboard.putData("Auto Chooser", auto);
   }
 

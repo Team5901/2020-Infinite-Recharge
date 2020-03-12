@@ -25,6 +25,8 @@ public class AutoDrive extends CommandBase {
     //addRequirements();
     m_distance = distance;
     m_DrivetrainSubsystem = drive;
+    
+    addRequirements(m_DrivetrainSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -39,7 +41,6 @@ public class AutoDrive extends CommandBase {
   @Override
   //18.84in(wheel circumference) = 0.48m. 
   public void execute() {
-    System.out.println("AutoDrive Execute Distance: " + m_distance);
     m_DrivetrainSubsystem.AutoDroive(m_distance);
   }
   
@@ -56,7 +57,6 @@ public class AutoDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("AutoDrive isFinished function");
-    return Math.abs(m_DrivetrainSubsystem.getAverageEncoderDistance()-m_distance) <=  Constants.DriveConstants.kAutoDistanceError;
+      return false;
   }
 }

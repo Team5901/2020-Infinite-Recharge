@@ -49,42 +49,32 @@ public class DrivetrainSubsystem extends SubsystemBase {
     rightFrontDriveMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 0);
 
     leftFrontDriveMotor.setSensorPhase(true);
-    rightFrontDriveMotor.setSensorPhase(false);
+    rightFrontDriveMotor.setSensorPhase(true);
 
     leftFrontDriveMotor.configOpenloopRamp(0.3,10);
     leftRearDriveMotor.configOpenloopRamp(0.3,10);
     rightFrontDriveMotor.configOpenloopRamp(0.3,10);
     rightFrontDriveMotor.configOpenloopRamp(0.3,10);
-
-
-
   }
 
   public void cougarDrive(double fwd, double rot) {
-    //System.out.println("Forward: " + fwd);
     double x = Math.pow(fwd,3.0);
     double y = Math.pow(rot,3.0);
-    //System.out.println("1st x: " + x);
     m_drive.arcadeDrive(Math.max(-0.8,Math.min(0.8,x)),Math.max(-0.6,Math.min(0.6,y)));
-
-    //System.out.println("2nd x: " + x);
+    System.out.println(x);
   }
   
-  public void AutoDroive(double distance) {
-    System.out.println("AutoDroive distance: " + distance);
+  public void AutoDroive(double distance) {;
     //find absolute error
     double error = Math.abs(distance - getAverageEncoderDistance());
-    System.out.println("Error: " + error);
     //if distance is positive and error is greater than 
-    if(error > Constants.DriveConstants.kAutoDistanceError){      
+    /*if(error > Constants.DriveConstants.kAutoDistanceError){      
       cougarDrive(1, -m_gyro.getAngle()*Constants.DriveConstants.kAutoTurnRatio);
-      System.out.println("Auto Speed Ratio: " + Constants.DriveConstants.kAutoSpeedRatio);
-      System.out.println("alkjdjdsah");
     }  
     else {
-      System.out.println("Else Statement");
       cougarDrive(0,0);
-    }
+    }*/
+    cougarDrive(1,0);
   }
   
   public void TurnControl(double AngleTarget){
@@ -105,16 +95,25 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public double getAverageEncoderDistance() {
-    double distancePerUnit=6*Math.PI/2048;
-    return (getLeftEncoder()+getRightEncoder())*distancePerUnit / 2.0;
+    return (getLeftEncoderDistance() + getRightEncoderDistance()) / 2;
   }
 
-  public double getLeftEncoder() {
-    return leftFrontDriveMotor.getSelectedSensorPosition();
+  public double getLeftEncoderDistance() {
+    if (shiftStatus()){
+      return -leftFrontDriveMotor.getSelectedSensorPosition()*Constants.DriveConstants.kDistancePerTick/Constants.DriveConstants.kHighGearRatio;
+    }
+    else {
+      return -leftFrontDriveMotor.getSelectedSensorPosition()*Constants.DriveConstants.kDistancePerTick/Constants.DriveConstants.kLowGearRatio;
+    }
   }
 
-  public double getRightEncoder() {
-    return rightFrontDriveMotor.getSelectedSensorPosition();
+  public double getRightEncoderDistance() {
+    if (shiftStatus()){
+      return rightFrontDriveMotor.getSelectedSensorPosition()*Constants.DriveConstants.kDistancePerTick/Constants.DriveConstants.kHighGearRatio;
+    }
+    else {
+      return rightFrontDriveMotor.getSelectedSensorPosition()*Constants.DriveConstants.kDistancePerTick/Constants.DriveConstants.kLowGearRatio;
+    }
   }
 
   public double getAngle() {
@@ -137,7 +136,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
   //shiftOut pushes Out
   public void shiftOut(){
     SolarNoise.set(true);
-
   }
   
   public boolean shiftStatus(){
@@ -148,6 +146,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Distance Traveled",getAverageEncoderDistance());
     SmartDashboard.putNumber("Angle Heading",getAngle());
+    SmartDashboard.putNumber("Left Distance",getLeftEncoderDistance());
+    SmartDashboard.putNumber("Right Distance",getRightEncoderDistance());
     //This method will be called once per scheduler run
   }
 

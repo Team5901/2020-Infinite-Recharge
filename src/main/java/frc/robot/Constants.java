@@ -43,6 +43,10 @@ public final class Constants {
     }
     public static final class DriveConstants {
         //Drivetrain Parameters
+        public static final double kDistancePerTick = 6*Math.PI/2048;
+        public static final double kLowGearRatio = 8.93;
+        public static final double kHighGearRatio = 5.50;
+
         public static final double kLowSpeedRatio = 0.7;
         public static final double kHighSpeedRatio = 1.0;
         public static final double kLimitTurnRatio = 0.5;
