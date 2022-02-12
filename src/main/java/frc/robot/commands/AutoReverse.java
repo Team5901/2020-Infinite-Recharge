@@ -23,7 +23,7 @@ public class AutoReverse extends SequentialCommandGroup {
     //super();
     addCommands(
       
-      new AutoDrive(-3000, drive)
+      new AutoDrive(-40, drive)
     );
   }
 }

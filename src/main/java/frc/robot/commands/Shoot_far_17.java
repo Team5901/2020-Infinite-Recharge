@@ -38,7 +38,7 @@ public class Shoot_far_17 extends CommandBase {
   public void execute() {
     m_ShooterSubsystem.shooterSpeedUp(Constants.ShooterConstants.kShooter_17RPM);
           //MODIFY RPM FOR 17 FOOT RANGE
-    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShooter_17RPM-500){
+    if(m_ShooterSubsystem.getShooterRPM() > Constants.ShooterConstants.kShooter_17RPM-250){
       m_IntakeSubsystem.conveyorMotorOn(Constants.IntakeConstants.kConveyorSpeed);
     }
   }

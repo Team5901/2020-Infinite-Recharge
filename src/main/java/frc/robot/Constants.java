@@ -43,6 +43,10 @@ public final class Constants {
     }
     public static final class DriveConstants {
         //Drivetrain Parameters
+        public static final double kDistancePerTick = 6*Math.PI/2048;
+        public static final double kLowGearRatio = 8.93;
+        public static final double kHighGearRatio = 5.50;
+
         public static final double kLowSpeedRatio = 0.7;
         public static final double kHighSpeedRatio = 0.7;
         public static final double kLimitTurnRatio = 0.5;
@@ -53,7 +57,7 @@ public final class Constants {
 
         public static final double kAutoTurnRatio = 0.03;           //Adjusts how quickly we turn in auto         
         public static final double kAutoAngleError = 1;             //Threshold acceptable angle error for auto
-        public static final double kAutoMinRotRatio = .07;          //Minimum power required to turn robot
+        public static final double kAutoMinRotRatio = .1;          //Minimum power required to turn robot
         
         //Vision Paramters
         public static final double kVisionSpeedRatio = 0.2;
@@ -82,8 +86,8 @@ public final class Constants {
 
     public static final class ShooterConstants{
         
-        public static final double kShooter_LineRPM = 3750; //Initiation
-        public static final double kShooter_17RPM = 5000; //Trench
+        public static final double kShooter_LineRPM = 4000; //Initiation
+        public static final double kShooter_17RPM = 4250; //Trench
         public static final double kShooter_passRPM = 500; //pass
 
         public static final int kMotorPort = 5;
@@ -94,14 +98,16 @@ public final class Constants {
         public static final double kF = 0.07;
         public static final double kP = 0.1;
         public static final double kI = 0;
-        public static final double kD = 0.001;
+        public static final double kD = 0.01;
 }
     //Climber motors
 
     public static final class ClimberConstants{
 
-        public static final double kClimberPwrUp = 0.3;
-        public static final double kClimberPwrDown = -0.3;
+        public static final double kClimberPwrUp = -0.3;
+        public static final double kClimberPwrDown = 0.3;
+
+        public static final int kMaxElevatorHeight=10000;
 
     }
 

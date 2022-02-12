@@ -31,7 +31,9 @@ public class RaiseElevator extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println("Climber Position: " + m_TheClimb.getClimberheight());
     m_TheClimb.setTheclimb(Constants.ClimberConstants.kClimberPwrUp);
+
   }
 
   // Called once the command ends or is interrupted.
