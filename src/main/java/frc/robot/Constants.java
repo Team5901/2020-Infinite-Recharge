@@ -44,7 +44,7 @@ public final class Constants {
     public static final class DriveConstants {
         //Drivetrain Parameters
         public static final double kLowSpeedRatio = 0.7;
-        public static final double kHighSpeedRatio = 1.0;
+        public static final double kHighSpeedRatio = 0.7;
         public static final double kLimitTurnRatio = 0.5;
 
         public static final double kAutoSpeedRatio = 0.5;           //Adjusts how quickly we drive straight in auto

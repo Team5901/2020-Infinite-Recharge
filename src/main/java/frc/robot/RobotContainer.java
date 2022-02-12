@@ -153,10 +153,10 @@ public class RobotContainer {
     .whenHeld(new Shoot_Pass(m_ShooterSubsystem,m_IntakeSubsystem));
 
     //Climber Commands
-    new JoystickButton(Controller1, Button.kX.value)
-    .whenHeld(new RaiseElevator(m_TheClimb));
-    new JoystickButton(Controller1, Button.kY.value)
-    .whenHeld(new LowerElevator(m_TheClimb));
+    //new JoystickButton(Controller1, Button.kX.value)
+    //.whenHeld(new RaiseElevator(m_TheClimb));
+    //new JoystickButton(Controller1, Button.kY.value)
+    //.whenHeld(new LowerElevator(m_TheClimb));
     
     //CONTROLLER 2
 
@@ -164,11 +164,11 @@ public class RobotContainer {
     new JoystickButton (Controller2, Button.kY.value)
     .whenHeld(new ShootBall(m_ShooterSubsystem,m_IntakeSubsystem));
 
-    new JoystickButton (Controller2, Button.kX.value)
+    new JoystickButton (Controller1, Button.kX.value)
     .whenHeld(new Shoot_far_17(m_ShooterSubsystem,m_IntakeSubsystem));
 
     //Autoaim Commands
-    new JoystickButton(Controller2, Button.kA.value)
+    new JoystickButton(Controller2, Button.kA.value) 
     .whenHeld(new AutoAim(m_DrivetrainSubsystem,m_VisionSubsystem));
      
     //Conveyor Commands
